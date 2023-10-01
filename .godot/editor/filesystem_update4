@@ -1,2 +1,5 @@
 res://Scenes/main.tscn
 res://Scripts/Player.gd
+res://Scenes/player.tscn
+res://Scenes/bullet.tscn
+res://Scripts/Bullet.gd

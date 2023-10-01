@@ -5,6 +5,7 @@ class_name Player
 @export var flames_position = 64
 @onready var flame_animation = $FlameAnimation
 @onready var body_animation = $BodyAnimation
+@onready var bullet = preload("res://Scenes/bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,14 +19,26 @@ func _process(delta):
 	
 func _input(event):
 	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
-	print(input_direction)
+	#print(input_direction)
 
 	self.velocity = input_direction * self.speed
 	self.flame_animation.global_position.y = self.global_position.y + self.flames_position
 	
 func _physics_process(delta):
+	if Input.is_action_just_pressed("Fire"):
+		self.shoot()
 	self.process_movement_animations()
 	self.move_and_slide()
+
+func shoot():
+	var currentBullet = self.bullet.instantiate() as Bullet
+	self.add_child(currentBullet)
+	currentBullet.set_as_top_level(true)
+	currentBullet.global_transform = self.global_transform
+	currentBullet.global_position.y -= 16
+	
+	#self.bullet.global_position.x = self.global_position.x
+	#self.bullet.global_position.y = self.global_position.y
 
 #TODO deem if needed
 func process_movement_animations():
