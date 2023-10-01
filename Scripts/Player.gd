@@ -6,11 +6,13 @@ class_name Player
 @onready var flame_animation = $FlameAnimation
 @onready var body_animation = $BodyAnimation
 @onready var bullet = preload("res://Scenes/bullet.tscn")
+@onready var muzzle_animation_sprite = %MuzzleAnimationSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.flame_animation.play("Idle")
 	self.body_animation.play("Idle")
+	self.muzzle_animation_sprite.stop()
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,6 +38,9 @@ func shoot():
 	currentBullet.set_as_top_level(true)
 	currentBullet.global_transform = self.global_transform
 	currentBullet.global_position.y -= 16
+	if !self.muzzle_animation_sprite.visible: 
+		self.muzzle_animation_sprite.visible = true
+	self.muzzle_animation_sprite.play("Shoot")
 	
 	#self.bullet.global_position.x = self.global_position.x
 	#self.bullet.global_position.y = self.global_position.y
@@ -50,3 +55,9 @@ func process_movement_animations():
 	else:
 		movement_animation = "Idle"
 	self.body_animation.play(movement_animation)
+
+
+func _on_muzzle_animation_sprite_animation_finished():
+	self.muzzle_animation_sprite.visible = false
+	self.muzzle_animation_sprite.stop()
+	#pass # Replace with function body.

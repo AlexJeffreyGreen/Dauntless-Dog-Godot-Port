@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=20 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
 [ext_resource type="Texture2D" uid="uid://b8t50cukivesc" path="res://Assets/Ship-Sheet.png" id="2_0a1yh"]
 [ext_resource type="Texture2D" uid="uid://bnniov1fr8vfb" path="res://Assets/Flames_Ship.png" id="3_7ym3o"]
+[ext_resource type="Texture2D" uid="uid://ch5571fqb656c" path="res://Assets/MuzzFlash.png" id="5_i4eun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w727f"]
 size = Vector2(48, 64)
@@ -79,6 +80,42 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqeqw"]
+atlas = ExtResource("5_i4eun")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqhj1"]
+atlas = ExtResource("5_i4eun")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qty8i"]
+atlas = ExtResource("5_i4eun")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3hr8"]
+atlas = ExtResource("5_i4eun")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fawep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqeqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqhj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qty8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3hr8")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 15.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mh2is")
 
@@ -95,3 +132,16 @@ texture_filter = 1
 position = Vector2(0, 64)
 sprite_frames = SubResource("SpriteFrames_48em5")
 animation = &"Idle"
+
+[node name="Muzzle" type="Node" parent="."]
+
+[node name="MuzzleAnimationSprite" type="AnimatedSprite2D" parent="Muzzle"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(-2.27374e-13, -19)
+scale = Vector2(1.15625, 1.125)
+sprite_frames = SubResource("SpriteFrames_fawep")
+animation = &"Shoot"
+frame_progress = 0.256606
+
+[connection signal="animation_finished" from="Muzzle/MuzzleAnimationSprite" to="." method="_on_muzzle_animation_sprite_animation_finished"]
