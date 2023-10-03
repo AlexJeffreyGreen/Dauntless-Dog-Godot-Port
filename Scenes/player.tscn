@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=22 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
 [ext_resource type="Texture2D" uid="uid://b8t50cukivesc" path="res://Assets/Ship-Sheet.png" id="2_0a1yh"]
 [ext_resource type="Texture2D" uid="uid://bnniov1fr8vfb" path="res://Assets/Flames_Ship.png" id="3_7ym3o"]
-[ext_resource type="Texture2D" uid="uid://ch5571fqb656c" path="res://Assets/MuzzFlash.png" id="5_i4eun"]
+[ext_resource type="Texture2D" uid="uid://cgfjaji0kxgxk" path="res://Assets/muzzle.png" id="5_pqtve"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w727f"]
 size = Vector2(48, 64)
@@ -80,41 +80,77 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqeqw"]
-atlas = ExtResource("5_i4eun")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1r6s"]
+atlas = ExtResource("5_pqtve")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jqhj1"]
-atlas = ExtResource("5_i4eun")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcxti"]
+atlas = ExtResource("5_pqtve")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qty8i"]
-atlas = ExtResource("5_i4eun")
+[sub_resource type="AtlasTexture" id="AtlasTexture_87p30"]
+atlas = ExtResource("5_pqtve")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f3hr8"]
-atlas = ExtResource("5_i4eun")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fawep"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_enoxi"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rqeqw")
+"texture": null
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jqhj1")
+"texture": SubResource("AtlasTexture_r1r6s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qty8i")
+"texture": SubResource("AtlasTexture_mcxti")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f3hr8")
+"texture": SubResource("AtlasTexture_87p30")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": true,
 "name": &"Shoot",
-"speed": 15.0
+"speed": 60.0
 }]
+
+[sub_resource type="Animation" id="Animation_11fqv"]
+resource_name = "Shoot"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_vfc0j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_017a2"]
+_data = {
+"RESET": SubResource("Animation_vfc0j"),
+"Shoot": SubResource("Animation_11fqv")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mh2is")
@@ -133,15 +169,25 @@ position = Vector2(0, 64)
 sprite_frames = SubResource("SpriteFrames_48em5")
 animation = &"Idle"
 
-[node name="Muzzle" type="Node" parent="."]
+[node name="Muzzle" type="Node2D" parent="."]
 
-[node name="MuzzleAnimationSprite" type="AnimatedSprite2D" parent="Muzzle"]
-unique_name_in_owner = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Muzzle"]
 texture_filter = 1
-position = Vector2(-2.27374e-13, -19)
-scale = Vector2(1.15625, 1.125)
-sprite_frames = SubResource("SpriteFrames_fawep")
+position = Vector2(0, -24)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_enoxi")
 animation = &"Shoot"
-frame_progress = 0.256606
 
-[connection signal="animation_finished" from="Muzzle/MuzzleAnimationSprite" to="." method="_on_muzzle_animation_sprite_animation_finished"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Muzzle"]
+speed_scale = 5.0
+libraries = {
+"": SubResource("AnimationLibrary_017a2")
+}
+
+[node name="BulletTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="Muzzle/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
