@@ -1,13 +1,13 @@
+AnimatedSprite2D
+CollisionShape2D
+Area2D
 Node
 AudioStreamPlayer2D
 Node2D
 AnimationPlayer
-AnimatedSprite2D
 Timer
 GPUParticles2D
-Area2D
 RigidBody2D
 Sprite2D
-CollisionShape2D
 CharacterBody2D
 Camera2D
