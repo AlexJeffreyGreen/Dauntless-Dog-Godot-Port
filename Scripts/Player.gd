@@ -10,6 +10,7 @@ var can_shoot : bool = false
 @onready var bullet_timer = $BulletTimer as Timer
 @onready var animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
+@onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,7 @@ func _physics_process(delta):
 
 func shoot():
 	self.animation_player.play("Shoot")
+	self.shoot_sound.play()
 	self.can_shoot = false
 	self.bullet_timer.start()#.start(.10)
 	var currentBullet = self.bullet.instantiate() as Bullet
@@ -71,5 +73,6 @@ func _on_bullet_timer_timeout():
 
 
 func _on_animation_player_animation_finished(anim_name):
-	print("animation finished")
+	pass
+	#print("animation finished")
 	#pass # Replace with function body.

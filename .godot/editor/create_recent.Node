@@ -1,9 +1,10 @@
+Node
+AudioStreamPlayer2D
 Node2D
 AnimationPlayer
 AnimatedSprite2D
 Timer
 GPUParticles2D
-Node
 Area2D
 RigidBody2D
 Sprite2D
