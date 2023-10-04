@@ -12,14 +12,11 @@ var can_shoot : bool = false
 @onready var muzzle = $Muzzle
 @onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	self.flame_animation.play("Idle")
 	self.body_animation.play("Idle")
-	#self.muzzle_animation_sprite.stop()
-	pass # Replace with function body.
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
@@ -36,7 +33,6 @@ func _physics_process(delta):
 	self.process_movement_animations()
 	self.move_and_slide()
 	self.muzzle.global_position = self.global_position
-	#self.muzzle.local_position = self.global_position
 
 func shoot():
 	self.animation_player.play("Shoot")
@@ -48,13 +44,7 @@ func shoot():
 	currentBullet.set_as_top_level(true)
 	currentBullet.global_transform = self.global_transform
 	currentBullet.global_position.y -= 16
-#	if !self.muzzle_animation_sprite.visible: 
-#		self.muzzle_animation_sprite.visible = true
-	#self.muzzle_animation_sprite.play("Shoot")
 	
-	#self.bullet.global_position.x = self.global_position.x
-	#self.bullet.global_position.y = self.global_position.y
-
 #TODO deem if needed
 func process_movement_animations():
 	var movement_animation: String
@@ -69,10 +59,7 @@ func process_movement_animations():
 
 func _on_bullet_timer_timeout():
 	self.can_shoot = true
-	#pass # Replace with function body.
 
 
 func _on_animation_player_animation_finished(anim_name):
 	pass
-	#print("animation finished")
-	#pass # Replace with function body.

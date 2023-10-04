@@ -27,6 +27,7 @@ color = Color(0.764706, 0.764706, 0.764706, 1)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_ytu15")
 lifetime = 30.0
+speed_scale = 5.0
 trail_lifetime = 0.1
 
 [node name="BackgroundSlower" type="GPUParticles2D" parent="."]
