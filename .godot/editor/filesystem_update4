@@ -5,3 +5,4 @@ res://Scenes/main.tscn
 res://Scenes/bullet.tscn
 res://Scenes/stars.tscn
 res://Scripts/Bullet.gd
+res://Scripts/Utils.gd
