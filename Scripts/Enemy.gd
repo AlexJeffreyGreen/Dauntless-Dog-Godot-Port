@@ -1,23 +1,34 @@
 extends Area2D
 class_name Enemy
 
+@export var max_speed = 40
+@export var acceleration = 50.0
 @export var health : int = 3
 @export var enemy_type : Contants.enemy_type = Contants.enemy_type.EYE
 @onready var enemy_animated_sprite = $AnimatedSprite2D
+@onready var ray_cast_2d : RayCast2D = $RayCast2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+	#self.player = get_parent().get_tree().get()
+	#pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	var local = self.ray_cast_2d.to_local(Global.player.global_position)# = Global.player.transform #get_local_mouse_position()
+	self.ray_cast_2d.target_position = local
+	#print(self.ray_cast_2d.target_position)
+	#pass
+	#self.ray_cast_2d.target_position = 
 
 func _on_area_entered(area):
 	print(area.name + " hit area")
 	
 
 func _on_body_entered(body):
-	print(body.name + " hit body")
+	pass

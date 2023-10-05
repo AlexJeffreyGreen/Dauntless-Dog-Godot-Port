@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs6gwpky7isoi"]
+[gd_scene load_steps=14 format=3 uid="uid://bs6gwpky7isoi"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_thca4"]
 [ext_resource type="Texture2D" uid="uid://482xlo4rggup" path="res://Assets/Enemy01.png" id="1_uhqui"]
+[ext_resource type="Texture2D" uid="uid://dqk7p1fxtxyrq" path="res://Assets/Enemy01_Enraged.png" id="3_lcoh7"]
+[ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="3_qlh1m"]
+[ext_resource type="Script" path="res://Scripts/States/Enemy_Wander_State.gd" id="5_1utgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb2r3"]
 size = Vector2(48, 48)
@@ -17,6 +20,18 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp2lt"]
 atlas = ExtResource("1_uhqui")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fspca"]
+atlas = ExtResource("1_uhqui")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbmxg"]
+atlas = ExtResource("3_lcoh7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gwcx"]
+atlas = ExtResource("3_lcoh7")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ls1fg"]
 animations = [{
@@ -36,6 +51,29 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fspca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbmxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fspca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gwcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fspca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbmxg")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
 }]
 
 [node name="Enemy" type="Area2D"]
@@ -47,9 +85,23 @@ shape = SubResource("RectangleShape2D_rb2r3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ls1fg")
-animation = &"Idle"
-frame = 2
-frame_progress = 0.573666
+animation = &"Move"
+frame_progress = 0.325957
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_qlh1m")
+current_state = NodePath("EnemyWanderState")
+
+[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("5_1utgf")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 8)
+target_position = Vector2(0, 16)
+collide_with_areas = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

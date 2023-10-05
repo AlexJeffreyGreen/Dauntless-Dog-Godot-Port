@@ -15,6 +15,7 @@ var can_shoot : bool = false
 func _ready():
 	self.flame_animation.play("Idle")
 	self.body_animation.play("Idle")
+	Global.player = self
 	pass
 
 func _process(delta):
