@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://docwtj4opgjjo"]
+[gd_scene load_steps=16 format=3 uid="uid://docwtj4opgjjo"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_thca4"]
 [ext_resource type="Texture2D" uid="uid://482xlo4rggup" path="res://Assets/Enemy01.png" id="1_uhqui"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="3_qlh1m"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Attack_State.gd" id="5_5q3y6"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Idle_State.gd" id="6_cdbim"]
+[ext_resource type="Script" path="res://Scripts/States/Enemy_Flying_State.gd" id="7_yp8yh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb2r3"]
 size = Vector2(48, 48)
@@ -92,7 +93,7 @@ frame_progress = 0.325957
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_qlh1m")
-current_state = NodePath("EnemyIdleState")
+current_state = NodePath("EnemyFlyingState")
 
 [node name="EnemyAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
 script = ExtResource("5_5q3y6")
@@ -102,6 +103,12 @@ vision_cast = NodePath("../../RayCast2D")
 
 [node name="EnemyIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
 script = ExtResource("6_cdbim")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="EnemyFlyingState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("7_yp8yh")
 actor = NodePath("../..")
 animator = NodePath("../../AnimatedSprite2D")
 vision_cast = NodePath("../../RayCast2D")

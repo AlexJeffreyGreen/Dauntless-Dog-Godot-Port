@@ -9,3 +9,4 @@ res://Scripts/States/State.gd
 res://Scripts/States/Enemy_Idle_State.gd
 res://Scripts/States/Enemy_Attack_State.gd
 res://Scripts/Enemy.gd
+res://Scripts/States/Enemy_Flying_State.gd

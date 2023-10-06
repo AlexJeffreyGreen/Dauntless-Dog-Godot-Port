@@ -8,6 +8,7 @@ class_name Enemy
 @onready var enemy_animated_sprite = $AnimatedSprite2D
 @onready var ray_cast_2d : RayCast2D = $RayCast2D
 
+@onready var enemy_flying_state : EnemyFlyingState = $FiniteStateMachine/EnemyFlyingState
 @onready var enemy_attack_state : EnemyAttackState = $FiniteStateMachine/EnemyAttackState
 @onready var enemy_idle_state : EnemyIdleState = $FiniteStateMachine/EnemyIdleState
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
@@ -15,6 +16,7 @@ class_name Enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.enemy_flying_state.arrived_at_location.connect(self.finite_state_machine._change_state.bind(self.enemy_idle_state))
 	self.enemy_idle_state.saw_player.connect(self.finite_state_machine._change_state.bind(self.enemy_attack_state))
 	self.enemy_attack_state.lost_player.connect(self.finite_state_machine._change_state.bind(self.enemy_idle_state))
 	#self.player = get_parent().get_tree().get()
