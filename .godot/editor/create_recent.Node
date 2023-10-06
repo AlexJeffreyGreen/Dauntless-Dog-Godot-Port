@@ -1,4 +1,4 @@
-EnemyWanderState
+EnemyIdleState
 Container
 RayCast2D
 FiniteStateMachine

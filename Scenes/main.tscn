@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dum61asv4utux" path="res://Scenes/player.tscn" id="1_8e3ey"]
 [ext_resource type="PackedScene" uid="uid://c583phb2opnlo" path="res://Scenes/stars.tscn" id="2_2ifgf"]
-[ext_resource type="PackedScene" uid="uid://bs6gwpky7isoi" path="res://Scenes/enemy.tscn" id="3_xv6gx"]
+[ext_resource type="PackedScene" uid="uid://docwtj4opgjjo" path="res://Scenes/enemy.tscn" id="3_xv6gx"]
 
 [node name="Main" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

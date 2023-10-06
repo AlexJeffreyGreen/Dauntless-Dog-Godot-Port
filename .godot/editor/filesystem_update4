@@ -1,7 +1,11 @@
-res://Scenes/enemy.tscn
+res://Scenes/bullet.tscn
 res://Scripts/States/Finite_State_Machine.gd
 res://Scripts/States/Enemy_Wander_State.gd
 res://Scenes/main.tscn
 res://Scenes/player.tscn
-res://Scenes/bullet.tscn
 res://Scenes/stars.tscn
+res://Scenes/enemy.tscn
+res://Scripts/States/State.gd
+res://Scripts/States/Enemy_Idle_State.gd
+res://Scripts/States/Enemy_Attack_State.gd
+res://Scripts/Enemy.gd

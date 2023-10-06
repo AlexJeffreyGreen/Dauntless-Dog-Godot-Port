@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bs6gwpky7isoi"]
+[gd_scene load_steps=15 format=3 uid="uid://docwtj4opgjjo"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_thca4"]
 [ext_resource type="Texture2D" uid="uid://482xlo4rggup" path="res://Assets/Enemy01.png" id="1_uhqui"]
 [ext_resource type="Texture2D" uid="uid://dqk7p1fxtxyrq" path="res://Assets/Enemy01_Enraged.png" id="3_lcoh7"]
 [ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="3_qlh1m"]
-[ext_resource type="Script" path="res://Scripts/States/Enemy_Wander_State.gd" id="5_1utgf"]
+[ext_resource type="Script" path="res://Scripts/States/Enemy_Attack_State.gd" id="5_5q3y6"]
+[ext_resource type="Script" path="res://Scripts/States/Enemy_Idle_State.gd" id="6_cdbim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb2r3"]
 size = Vector2(48, 48)
@@ -80,6 +81,7 @@ animations = [{
 script = ExtResource("1_thca4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.32724, 1.33351)
 shape = SubResource("RectangleShape2D_rb2r3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -90,17 +92,23 @@ frame_progress = 0.325957
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_qlh1m")
-current_state = NodePath("EnemyWanderState")
+current_state = NodePath("EnemyIdleState")
 
-[node name="EnemyWanderState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
-script = ExtResource("5_1utgf")
+[node name="EnemyAttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("5_5q3y6")
+actor = NodePath("../..")
+animator = NodePath("../../AnimatedSprite2D")
+vision_cast = NodePath("../../RayCast2D")
+
+[node name="EnemyIdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
+script = ExtResource("6_cdbim")
 actor = NodePath("../..")
 animator = NodePath("../../AnimatedSprite2D")
 vision_cast = NodePath("../../RayCast2D")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 8)
-target_position = Vector2(0, 16)
+target_position = Vector2(0, 6)
 collide_with_areas = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,27 +1,25 @@
-class_name EnemyWanderState
+class_name EnemyAttackState
 extends State
 
-@export var actor : Enemy
-@export var animator : AnimatedSprite2D
-@export var vision_cast : RayCast2D
+signal lost_player
 
-signal saw_player
-
-func _ready():
+func _ready() -> void:
 	self.set_physics_process(false)
 
 func _enter_state() -> void:
 	self.set_physics_process(true)
+	#possible inheritance
 	self.animator.play("Move")
-	
-	#if self.actor.speed == Vector2.ZERO:
-	#	self.actor.velocity = Vector2.RIGHT.rotated(randf_range(0, TAU)) * self.actor.max_speed
 
 func _exit_state() -> void:
 	self.set_physics_process(false)
 
 func _physics_process(delta):
-	self.actor.global_position.y += 1#self.actor.max_speed
+	if not self.vision_cast.is_colliding():
+		self.lost_player.emit()
+	#shoot at player's position on the x
+	#pass
+	#self.actor.global_position.y += 1#self.actor.max_speed
 	#if we want to flip the sprite to move in our direction
 	#self.animator.scale.x = -sign(self.actor.velocity.x)
 	#if self.animator.scale.x == 0: self.animator.scale.x = 1.0
