@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 var can_shoot : bool = false
+var health : float = 50
 @export var speed : float = 400
 @export var flames_position = 64
 @onready var flame_animation = $FlameAnimation
@@ -64,3 +65,8 @@ func _on_bullet_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	pass
+
+#func damage(attack: Attack):
+#	self.health -= attack.attack_damage
+#	if self.health <= 0:
+#		self.queue_free()

@@ -1,6 +1,9 @@
-extends Area2D
+extends CharacterBody2D
 class_name Enemy
 
+var attack_damage : float = 5
+var stun_time : float = 0.0
+ 
 @export var max_speed = 40
 @export var acceleration = 50.0
 @export var health : int = 3
@@ -29,18 +32,23 @@ func _process(delta):
 
 func _physics_process(delta):
 	pass
-	#self.ray_cast_2d.set_cast_to(Vector2.DOWN)
-	#self.ray_cast_2d.target_position = Vector2.DOWN
-	
-	#var local = self.ray_cast_2d.to_local(Global.player.global_position)# = Global.player.transform #get_local_mouse_position()
-	#self.ray_cast_2d.target_position = local
-	#print(self.ray_cast_2d.target_position)
-	#pass
-	#self.ray_cast_2d.target_position = 
 
 func _on_area_entered(area):
 	print(area.name + " hit area")
 	
 
 func _on_body_entered(body):
-	pass
+	if body.has_method("damage"):
+		var attack = Attack.new()
+		attack.attack_damage = self.attack_damage
+		attack.knockback_force = 1
+		attack.attack_position = self.global_position
+		body.damage(attack)
+
+#func damage(attack: Attack):
+#	self.health -= attack.attack_damage
+#	if self.health <= 0:
+#		self.queue_free()
+#	self.stun_time = attack.stun_timer
+	#possible velocity IF we change them to a characterbody2d
+	#self.velocity = (self.global_position - attack.attack_position).normalized()*attack.knockback_force

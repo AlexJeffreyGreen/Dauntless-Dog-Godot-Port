@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ban2fo0lfbu2w" path="res://Scenes/hitbox_component.tscn" id="9_qp51y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb2r3"]
-size = Vector2(48.2204, 44.994)
+size = Vector2(48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h8m7"]
 atlas = ExtResource("1_uhqui")
@@ -81,13 +81,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esxyv"]
-size = Vector2(64, 60)
+size = Vector2(64, 56)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="Area2D"]
 script = ExtResource("1_thca4")
+max_speed = null
+acceleration = null
+health = null
+enemy_type = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.3113e-06, 2.00001)
 scale = Vector2(1.32724, 1.33351)
 shape = SubResource("RectangleShape2D_rb2r3")
 
@@ -126,11 +129,13 @@ collide_with_areas = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("8_rxo4i")]
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_qp51y")]
-collision_layer = 3
-collision_mask = 5
-health_component = NodePath("../HealthComponent")
+[node name="HitboxComponent" parent="." instance=ExtResource("9_qp51y")]
+collision_layer = 4
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(0, 2)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_esxyv")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

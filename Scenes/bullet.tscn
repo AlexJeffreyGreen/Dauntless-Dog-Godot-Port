@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2hhuvas81xri"]
+[gd_scene load_steps=6 format=3 uid="uid://d2hhuvas81xri"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_qy15w"]
 [ext_resource type="Texture2D" uid="uid://fl4xfwqmk2vh" path="res://Assets/Bullet.png" id="2_e7p3w"]
+[ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="3_3fl11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfmkd"]
+size = Vector2(64, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58333"]
 size = Vector2(8, 48)
@@ -9,13 +13,8 @@ size = Vector2(8, 48)
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_qy15w")
 
-[node name="BulletLeftCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(-28, 0)
-shape = SubResource("RectangleShape2D_58333")
-
-[node name="BulletRightCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(28, 0)
-shape = SubResource("RectangleShape2D_58333")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pfmkd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -25,4 +24,18 @@ texture = ExtResource("2_e7p3w")
 wait_time = 3.0
 autostart = true
 
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("3_3fl11")
+
+[node name="BulletLeftCollisionShape" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-28, 0)
+shape = SubResource("RectangleShape2D_58333")
+
+[node name="BulletRightCollisionShape" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(28, 0)
+shape = SubResource("RectangleShape2D_58333")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
