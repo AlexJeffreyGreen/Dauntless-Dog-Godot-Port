@@ -52,3 +52,14 @@ func _on_body_entered(body):
 #	self.stun_time = attack.stun_timer
 	#possible velocity IF we change them to a characterbody2d
 	#self.velocity = (self.global_position - attack.attack_position).normalized()*attack.knockback_force
+
+
+func _on_hitbox_component_area_entered(area):
+	if area is HitboxComponent:
+		var hitbox : HitboxComponent = area
+		var attack = Attack.new()
+		attack.attack_damage = self.attack_damage
+		attack.knockback_force = 1
+		attack.attack_position = self.global_position
+		attack.stun_timer = self.stun_time
+		hitbox.damage(attack)

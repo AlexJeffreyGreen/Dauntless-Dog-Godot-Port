@@ -2,7 +2,7 @@ extends Area2D
 class_name Bullet
 
 @export var speed : float = 15
-@export var attack_damage : int = 5
+@export var attack_damage : int = 2
 var stun_time : float = 1.5
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

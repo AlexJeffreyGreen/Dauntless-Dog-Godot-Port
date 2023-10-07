@@ -1,3 +1,4 @@
+HealthComponent
 CollisionShape2D
 HitboxComponent
 Area2D

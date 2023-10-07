@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Player
 
 var can_shoot : bool = false
-var health : float = 50
 @export var speed : float = 400
 @export var flames_position = 64
 @onready var flame_animation = $FlameAnimation
