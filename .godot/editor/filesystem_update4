@@ -1,7 +1,12 @@
-res://Scenes/main.tscn
+res://Scenes/enemy.tscn
 res://Scripts/States/Enemy_Attack_State.gd
+res://Shaders/flicker.gdshader
+res://Scripts/HitboxComponent.gd
+res://Scripts/Enemy.gd
+res://Scenes/main.tscn
 res://Scenes/player.tscn
 res://Scenes/bullet.tscn
 res://Scenes/stars.tscn
-res://Scenes/enemy.tscn
 res://Scenes/hitbox_component.tscn
+res://Scenes/enemy_bullet.tscn
+res://Scripts/Bullet.gd

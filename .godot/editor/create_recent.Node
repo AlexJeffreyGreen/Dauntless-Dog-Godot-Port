@@ -1,7 +1,9 @@
-HealthComponent
+Timer
 CollisionShape2D
 HitboxComponent
+AnimatedSprite2D
 Area2D
+HealthComponent
 CharacterBody2D
 Node2D
 EnemyFlyingState
@@ -9,11 +11,9 @@ EnemyIdleState
 Container
 RayCast2D
 FiniteStateMachine
-AnimatedSprite2D
 Node
 AudioStreamPlayer2D
 AnimationPlayer
-Timer
 GPUParticles2D
 RigidBody2D
 Sprite2D

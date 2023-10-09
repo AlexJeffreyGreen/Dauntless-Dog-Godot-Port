@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://docwtj4opgjjo"]
+[gd_scene load_steps=21 format=3 uid="uid://docwtj4opgjjo"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_thca4"]
 [ext_resource type="Texture2D" uid="uid://482xlo4rggup" path="res://Assets/Enemy01.png" id="1_uhqui"]
+[ext_resource type="Shader" path="res://Shaders/flicker.gdshader" id="2_vb4n5"]
 [ext_resource type="Texture2D" uid="uid://dqk7p1fxtxyrq" path="res://Assets/Enemy01_Enraged.png" id="3_lcoh7"]
 [ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="3_qlh1m"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Attack_State.gd" id="5_5q3y6"]
@@ -12,6 +13,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb2r3"]
 size = Vector2(48.2204, 44.994)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p5qdp"]
+resource_local_to_scene = true
+shader = ExtResource("2_vb4n5")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6h8m7"]
 atlas = ExtResource("1_uhqui")
@@ -93,9 +100,17 @@ shape = SubResource("RectangleShape2D_rb2r3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_p5qdp")
 sprite_frames = SubResource("SpriteFrames_ls1fg")
 animation = &"Move"
 frame_progress = 0.325957
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_qlh1m")
@@ -135,4 +150,5 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_esxyv")
 
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]
 [connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

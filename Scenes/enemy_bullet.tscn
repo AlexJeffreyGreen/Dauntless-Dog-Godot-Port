@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://xexnti3sf4mb"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_bullet.gd" id="1_gfuyf"]
+[ext_resource type="Texture2D" uid="uid://c668u5gmk8y2w" path="res://Assets/Enemy_Bullet.png" id="1_yxmyd"]
+[ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="2_x0oce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h11ta"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxnmu"]
+atlas = ExtResource("1_yxmyd")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85qff"]
+atlas = ExtResource("1_yxmyd")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8bwj"]
+atlas = ExtResource("1_yxmyd")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0gnn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxnmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85qff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8bwj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n7yl"]
+size = Vector2(16, 16)
+
+[node name="Enemy_bullet" type="Area2D"]
+script = ExtResource("1_gfuyf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_h11ta")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0gnn7")
+animation = &"Idle"
+frame_progress = 0.908678
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("2_x0oce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_6n7yl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

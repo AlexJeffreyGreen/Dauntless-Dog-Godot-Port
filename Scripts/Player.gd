@@ -8,7 +8,7 @@ var can_shoot : bool = false
 @onready var body_animation = $BodyAnimation
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 @onready var bullet_timer = $BulletTimer as Timer
-@onready var animation_player = $Muzzle/AnimationPlayer
+@onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
 @onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
 
@@ -36,7 +36,7 @@ func _physics_process(delta):
 	self.muzzle.global_position = self.global_position
 
 func shoot():
-	self.animation_player.play("Shoot")
+	self.muzzle_animation_player.play("Shoot")
 	self.shoot_sound.play()
 	self.can_shoot = false
 	self.bullet_timer.start()#.start(.10)

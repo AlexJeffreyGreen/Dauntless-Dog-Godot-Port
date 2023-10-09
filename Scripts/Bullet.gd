@@ -15,19 +15,6 @@ func _on_timer_timeout():
 	self.queue_free()
 	#pass # Replace with function body.
 
-#
-#func _on_area_entered(area):
-#	print(area.name)
-#	if area is HitboxComponent:
-#		var hitbox : HitboxComponent = area
-#		var attack = Attack.new()
-#		attack.attack_damage = self.attack_damage
-#		attack.knockback_force = 1
-#		attack.attack_position = self.global_position
-#		attack.stun_timer = self.stun_time
-#		hitbox.damage(attack)
-
-
 func _on_hitbox_component_area_entered(area):
 	print("Bullet hitbox component area entered - " + area.name)
 	if area is HitboxComponent:
@@ -38,3 +25,4 @@ func _on_hitbox_component_area_entered(area):
 		attack.attack_position = self.global_position
 		attack.stun_timer = self.stun_time
 		hitbox.damage(attack)
+		self.queue_free()
