@@ -11,7 +11,7 @@ var can_shoot : bool = false
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
 @onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
-@onready var flash_timer = $FlashTimer
+@onready var visual_component = $VisualComponent
 
 func _ready():
 	self.flame_animation.play("Idle")
@@ -65,10 +65,3 @@ func _on_bullet_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	pass
-
-func flash():
-	self.body_animation.material.set_shader_parameter("flash_modifier", 1)
-	self.flash_timer.start()
-
-func _on_flash_timer_timeout():
-	self.body_animation.material.set_shader_parameter("flash_modifier", 0)

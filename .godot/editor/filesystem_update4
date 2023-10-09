@@ -11,3 +11,5 @@ res://Scenes/hitbox_component.tscn
 res://Scenes/enemy_bullet.tscn
 res://Scripts/Bullet.gd
 res://Scripts/Player.gd
+res://Scripts/VisualComponent.gd
+res://Scenes/visual_component.tscn

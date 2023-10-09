@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxef6jrnayu8a"]
+
+[ext_resource type="Script" path="res://Scripts/VisualComponent.gd" id="1_dvfng"]
+
+[node name="VisualComponent" type="Node"]
+script = ExtResource("1_dvfng")

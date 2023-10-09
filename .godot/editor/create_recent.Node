@@ -1,4 +1,6 @@
 Timer
+VisualComponent
+Node
 CollisionShape2D
 HitboxComponent
 AnimatedSprite2D
@@ -11,7 +13,6 @@ EnemyIdleState
 Container
 RayCast2D
 FiniteStateMachine
-Node
 AudioStreamPlayer2D
 AnimationPlayer
 GPUParticles2D

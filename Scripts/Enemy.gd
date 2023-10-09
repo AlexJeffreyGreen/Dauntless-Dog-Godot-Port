@@ -19,6 +19,7 @@ var stun_time : float = 0.0
 @onready var enemy_idle_state : EnemyIdleState = $FiniteStateMachine/EnemyIdleState
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
 @onready var attack_timer = $AttackTimer
+@onready var visual_component = $VisualComponent
 var can_shoot : bool = true
 
 # Called when the node enters the scene tree for the first time.
@@ -71,13 +72,7 @@ func shoot_at(hit_box_component : HitboxComponent):
 	current_bullet.global_position.y += 16
 	
 	#self.enemy_animated_sprite.play("Shoot")
-	#skip animation	
-func flash():
-	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 1)
-	self.flash_timer.start()
 
-func _on_flash_timer_timeout():
-	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 0)
 
 
 func _on_attack_timer_timeout():

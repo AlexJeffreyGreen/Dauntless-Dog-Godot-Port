@@ -6,4 +6,4 @@ class_name HitboxComponent
 func damage(attack: Attack):
 	if self.health_component:
 		self.health_component.damage(attack)
-		self.get_parent().flash()
+		self.get_parent().visual_component.flash()
