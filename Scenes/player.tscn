@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=28 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
 [ext_resource type="Texture2D" uid="uid://b8t50cukivesc" path="res://Assets/Ship-Sheet.png" id="2_0a1yh"]
+[ext_resource type="Shader" path="res://Shaders/flicker.gdshader" id="2_8bkyb"]
 [ext_resource type="Texture2D" uid="uid://bnniov1fr8vfb" path="res://Assets/Flames_Ship.png" id="3_7ym3o"]
 [ext_resource type="Texture2D" uid="uid://cgfjaji0kxgxk" path="res://Assets/muzzle.png" id="5_pqtve"]
 [ext_resource type="AudioStream" uid="uid://x35vg17al3ju" path="res://Assets/Audio/basic_shoot.wav" id="6_8tfi2"]
@@ -11,6 +12,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w727f"]
 size = Vector2(48, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwyiu"]
+shader = ExtResource("2_8bkyb")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iipbf"]
 atlas = ExtResource("2_0a1yh")
@@ -168,6 +174,7 @@ shape = SubResource("RectangleShape2D_w727f")
 
 [node name="BodyAnimation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_mwyiu")
 sprite_frames = SubResource("SpriteFrames_2rstb")
 animation = &"Idle"
 
@@ -197,6 +204,9 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="Audio" type="Node" parent="."]
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="Audio"]
@@ -218,3 +228,4 @@ script = ExtResource("8_apjqa")
 
 [connection signal="animation_finished" from="Muzzle/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

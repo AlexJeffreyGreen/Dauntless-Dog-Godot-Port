@@ -16,7 +16,6 @@ func _on_timer_timeout():
 	#pass # Replace with function body.
 
 func _on_hitbox_component_area_entered(area):
-	print("Bullet hitbox component area entered - " + area.name)
 	if area is HitboxComponent:
 		var hitbox : HitboxComponent = area
 		var attack = Attack.new()

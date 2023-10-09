@@ -12,13 +12,14 @@ var stun_time : float = 0.0
 @export var enemy_type : Contants.enemy_type = Contants.enemy_type.EYE
 @onready var enemy_animated_sprite = $AnimatedSprite2D
 @onready var ray_cast_2d : RayCast2D = $RayCast2D
-@onready var bullet = preload("res://Scenes/enemy_bullet.gd")
+@onready var bullet = preload("res://Scenes/enemy_bullet.tscn")
 @onready var flash_timer = $FlashTimer
 @onready var enemy_flying_state : EnemyFlyingState = $FiniteStateMachine/EnemyFlyingState
 @onready var enemy_attack_state : EnemyAttackState = $FiniteStateMachine/EnemyAttackState
 @onready var enemy_idle_state : EnemyIdleState = $FiniteStateMachine/EnemyIdleState
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
-
+@onready var attack_timer = $AttackTimer
+var can_shoot : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,8 +60,17 @@ func _on_hitbox_component_area_entered(area):
 		attack.stun_timer = self.stun_time
 		hitbox.damage(attack)
 
-func shoot(coords : Vector2):
-	pass
+func shoot_at(hit_box_component : HitboxComponent):
+	if !self.can_shoot: return
+	self.can_shoot = false
+	self.attack_timer.start()
+	var current_bullet = self.bullet.instantiate() as EnemyBullet
+	self.add_child(current_bullet)
+	current_bullet.set_as_top_level(true)
+	current_bullet.global_transform = self.global_transform
+	current_bullet.global_position.y += 16
+	
+	#self.enemy_animated_sprite.play("Shoot")
 	#skip animation	
 func flash():
 	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 1)
@@ -68,3 +78,7 @@ func flash():
 
 func _on_flash_timer_timeout():
 	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 0)
+
+
+func _on_attack_timer_timeout():
+	self.can_shoot = true

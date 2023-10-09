@@ -3,6 +3,8 @@ extends State
 
 signal lost_player
 
+@onready var bullet = preload("res://Scenes/enemy_bullet.tscn")
+
 func _ready() -> void:
 	self.set_physics_process(false)
 
@@ -17,6 +19,8 @@ func _exit_state() -> void:
 func _physics_process(delta):
 	if not self.vision_cast.is_colliding():
 		self.lost_player.emit()
+	var hit_box_component = self.vision_cast.get_collider() as HitboxComponent
+	self.actor.shoot_at(hit_box_component)
 	#shoot at player's position on the x
 	#pass
 	#self.actor.global_position.y += 1#self.actor.max_speed
