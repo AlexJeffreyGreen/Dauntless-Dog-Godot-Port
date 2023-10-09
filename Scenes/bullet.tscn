@@ -11,6 +11,8 @@ size = Vector2(64, 48)
 size = Vector2(8, 48)
 
 [node name="Bullet" type="Area2D"]
+collision_layer = 12
+collision_mask = 12
 script = ExtResource("1_qy15w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,8 +27,8 @@ wait_time = 3.0
 autostart = true
 
 [node name="HitboxComponent" type="Area2D" parent="."]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 12
+collision_mask = 12
 script = ExtResource("3_3fl11")
 
 [node name="BulletLeftCollisionShape" type="CollisionShape2D" parent="HitboxComponent"]

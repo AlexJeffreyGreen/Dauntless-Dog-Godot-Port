@@ -156,9 +156,11 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw2c6"]
-size = Vector2(64, 64)
+size = Vector2(64, 56)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 12
+collision_mask = 12
 script = ExtResource("1_mh2is")
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
@@ -201,13 +203,15 @@ autostart = true
 stream = ExtResource("6_8tfi2")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 3
+collision_mask = 12
 script = ExtResource("7_u8qv4")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_mw2c6")
+debug_color = Color(0.960784, 0, 0.517647, 0.419608)
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("8_apjqa")

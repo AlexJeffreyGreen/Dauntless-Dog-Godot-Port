@@ -127,8 +127,8 @@ collide_with_areas = true
 [node name="HealthComponent" parent="." instance=ExtResource("8_rxo4i")]
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("9_qp51y")]
-collision_layer = 3
-collision_mask = 5
+collision_layer = 6
+collision_mask = 3
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
