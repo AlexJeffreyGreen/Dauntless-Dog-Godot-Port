@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwibkpx8150yh"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UI.gd" id="1_oywxk"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_yppsn"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_1k2pm"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_bq5lb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q65l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wdpyc"]
+bg_color = Color(0, 0.462745, 0.929412, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wmua"]
+bg_color = Color(0.188235, 0.54902, 0.486275, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1im5x"]
+bg_color = Color(1, 0.298039, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvhsn"]
+bg_color = Color(0.207843, 0.670588, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oywxk")
+
+[node name="HealthUI" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 492.0
+offset_right = 128.0
+offset_bottom = 775.0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 8
+
+[node name="DoverHealth" type="VSlider" parent="HealthUI"]
+layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_yppsn")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_1k2pm")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_bq5lb")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8q65l")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_wdpyc")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1wmua")
+max_value = 10.0
+value = 10.0
+editable = false
+scrollable = false
+
+[node name="JaneHealth" type="VSlider" parent="HealthUI"]
+visible = false
+layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_yppsn")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_1k2pm")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_bq5lb")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8q65l")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_1im5x")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1wmua")
+max_value = 10.0
+value = 10.0
+editable = false
+scrollable = false
+
+[node name="CaseyHealth" type="VSlider" parent="HealthUI"]
+visible = false
+layout_mode = 2
+theme_override_icons/grabber = SubResource("ImageTexture_yppsn")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_1k2pm")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_bq5lb")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8q65l")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_cvhsn")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1wmua")
+max_value = 10.0
+value = 10.0
+editable = false
+scrollable = false

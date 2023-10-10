@@ -65,3 +65,6 @@ func _on_bullet_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	pass
+	
+func get_health() -> int:
+	return self.get_node("HealthComponent").health

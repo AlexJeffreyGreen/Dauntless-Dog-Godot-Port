@@ -1,3 +1,10 @@
+CanvasLayer
+Camera2D
+UI
+VSlider
+HBoxContainer
+ColorRect
+HSlider
 Timer
 VisualComponent
 Node
@@ -18,4 +25,3 @@ AnimationPlayer
 GPUParticles2D
 RigidBody2D
 Sprite2D
-Camera2D
