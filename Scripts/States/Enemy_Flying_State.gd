@@ -1,8 +1,8 @@
 class_name EnemyFlyingState
 extends State
 
-var spawn_position : float
-var destination_position : float
+var spawn_position : Vector2
+var destination_position : Vector2
 signal arrived_at_location
 
 func _ready() -> void:
@@ -12,8 +12,8 @@ func _ready() -> void:
 
 func _enter_state() -> void:
 	self.set_physics_process(true)
-	if self.actor.global_position.y != self.spawn_position:
-		self.actor.global_position.y = self.spawn_position
+	if self.actor.global_position != self.spawn_position:
+		self.actor.global_position = self.spawn_position
 	#possible inheritance
 	self.animator.play("Idle")
 
@@ -21,8 +21,10 @@ func _exit_state() -> void:
 	self.set_physics_process(false)
 
 func _physics_process(delta):
+#	if self.actor.global_position.x != self.spawn_position.x:
+#		self.actor.global_position.x = self.spawn_position.x
 	self.actor.global_position.y += 1
-	if self.actor.global_position.y == self.destination_position:
+	if self.actor.global_position.floor().y == self.destination_position.floor().y:
 		self.arrived_at_location.emit()
 	#shoot at player's position on the x
 	#pass

@@ -15,5 +15,7 @@ func _exit_state() -> void:
 
 func _physics_process(delta):
 	self.vision_cast.target_position = Vector2(0, self.actor.get_viewport_rect().size.y)
-	if self.vision_cast.is_colliding():
-		self.saw_player.emit()
+	if self.vision_cast.is_colliding() && self.vision_cast.get_collider() != null && self.vision_cast.get_collider().get_parent() != null:
+		var currentColl = self.vision_cast.get_collider().get_parent()
+		if currentColl is Player:
+			self.saw_player.emit()
