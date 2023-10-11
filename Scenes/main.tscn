@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dum61asv4utux" path="res://Scenes/player.tscn" id="1_8e3ey"]
 [ext_resource type="PackedScene" uid="uid://c583phb2opnlo" path="res://Scenes/stars.tscn" id="2_2ifgf"]
-[ext_resource type="PackedScene" uid="uid://docwtj4opgjjo" path="res://Scenes/enemy.tscn" id="3_xv6gx"]
 [ext_resource type="PackedScene" uid="uid://cwibkpx8150yh" path="res://Scenes/UI/UI.tscn" id="4_kgsbu"]
+[ext_resource type="Script" path="res://Scripts/WaveSpawner.gd" id="5_ri1va"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -16,9 +16,6 @@ y_sort_enabled = true
 position = Vector2(0, -316)
 scale = Vector2(10.12, 5.64)
 
-[node name="Enemy" parent="." instance=ExtResource("3_xv6gx")]
-position = Vector2(0, -151)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -27,3 +24,6 @@ offset_left = -566.0
 offset_top = -332.0
 offset_right = -566.0
 offset_bottom = -332.0
+
+[node name="WaveSpawner" type="Node2D" parent="."]
+script = ExtResource("5_ri1va")

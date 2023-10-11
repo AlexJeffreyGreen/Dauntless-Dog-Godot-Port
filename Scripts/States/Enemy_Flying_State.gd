@@ -1,11 +1,13 @@
 class_name EnemyFlyingState
 extends State
 
-@export var spawn_position : float = -500
-@export var destination_position : float = -151
+var spawn_position : float
+var destination_position : float
 signal arrived_at_location
 
 func _ready() -> void:
+	self.spawn_position = self.actor.spawn_position
+	self.destination_position = self.actor.destination_position
 	self.set_physics_process(false)
 
 func _enter_state() -> void:

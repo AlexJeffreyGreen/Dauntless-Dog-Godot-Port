@@ -3,7 +3,8 @@ class_name Enemy
 
 var attack_damage : float = 5
 var stun_time : float = 0.0
-
+var spawn_position : float = -500
+var destination_position : float = -151
 
 
 @export var max_speed = 40
