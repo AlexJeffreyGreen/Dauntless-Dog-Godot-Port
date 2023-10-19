@@ -24,3 +24,5 @@ res://Scripts/Audio/audio_component.gd
 res://Scripts/HitboxComponent.gd
 res://Scripts/Audio/Audio_Manager.gd
 res://Scripts/States/Enemy_Flying_State.gd
+res://Scripts/Camera.gd
+res://Scripts/Global.gd

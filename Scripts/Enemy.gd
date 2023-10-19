@@ -81,6 +81,7 @@ func _on_attack_timer_timeout():
 	self.can_shoot = true
 
 func death():
+	Global.camera.screen_shake(5.0,5.0,0.05)
 	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.HIT) #TODO change to EXPLODE when ready
 	AudioManager.play(AudioManager.SOUND_EFFECT.EXPLODE)
 	self.death_signal.emit()

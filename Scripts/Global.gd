@@ -3,6 +3,7 @@ extends Node
 var audio_sound_effect_volume : float = 0
 var player : Player
 var wave_spawner = load("res://Scripts/wave_spawner.tscn")
+var camera : DauntlessCamera = null
 
 func _ready():
 	Utils.loadGame()

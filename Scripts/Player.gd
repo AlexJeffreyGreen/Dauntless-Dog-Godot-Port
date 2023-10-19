@@ -10,7 +10,6 @@ var can_shoot : bool = false
 @onready var bullet_timer = $BulletTimer as Timer
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
-@onready var audio_component = $AudioComponent as AudioComponent
 
 
 @onready var visual_component = $VisualComponent
@@ -74,6 +73,7 @@ func get_health() -> int:
 	return self.get_node("HealthComponent").health
 
 func death():
+	Global.camera.screen_shake(10.0,10.0,0.05)
 	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.HIT) #TODO change to EXPLOSION when ready
 	AudioManager.play(AudioManager.SOUND_EFFECT.EXPLODE)
 	var explosion = self.explosion.instantiate() as Explosion

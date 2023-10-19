@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://eo8bmrc8jhha"]
+[gd_scene load_steps=6 format=3 uid="uid://eo8bmrc8jhha"]
 
 [ext_resource type="PackedScene" uid="uid://dum61asv4utux" path="res://Scenes/player.tscn" id="1_8e3ey"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_dvj1b"]
 [ext_resource type="PackedScene" uid="uid://c583phb2opnlo" path="res://Scenes/stars.tscn" id="2_2ifgf"]
 [ext_resource type="PackedScene" uid="uid://cwibkpx8150yh" path="res://Scenes/UI/UI.tscn" id="4_kgsbu"]
 [ext_resource type="Script" path="res://Scripts/WaveSpawner.gd" id="5_ri1va"]
@@ -8,7 +9,11 @@
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("1_dvj1b")
+
+[node name="Shaketimer" type="Timer" parent="Camera"]
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_8e3ey")]
 
@@ -27,3 +32,5 @@ offset_bottom = -332.0
 
 [node name="WaveSpawner" type="Node2D" parent="."]
 script = ExtResource("5_ri1va")
+
+[connection signal="timeout" from="Camera/Shaketimer" to="Camera" method="_on_shaketimer_timeout"]
