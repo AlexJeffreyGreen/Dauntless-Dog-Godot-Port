@@ -4,12 +4,15 @@ class_name Bullet
 @export var speed : float = 15
 @export var attack_damage : int = 2
 var stun_time : float = 1.5
+enum BULLET_BEHAVIOR {NORMAL,SPREAD}
+var current_behavior : BULLET_BEHAVIOR = BULLET_BEHAVIOR.NORMAL
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.global_position.y -= self.speed
-	
-	#if self.global_position.y >= 500:
-	#	self.queue_free()
+	match(self.current_behavior):
+		BULLET_BEHAVIOR.NORMAL:
+			self.global_position.y -= self.speed
+		BULLET_BEHAVIOR.SPREAD:
+			pass
 
 func _on_timer_timeout():
 	self.queue_free()

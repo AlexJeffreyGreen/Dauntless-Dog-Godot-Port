@@ -2,4 +2,5 @@ extends Bullet
 class_name EnemyBullet
 
 func _process(delta):
-	self.global_position.y += self.speed
+	if self.current_behavior == BULLET_BEHAVIOR.NORMAL:
+		self.global_position.y += self.speed

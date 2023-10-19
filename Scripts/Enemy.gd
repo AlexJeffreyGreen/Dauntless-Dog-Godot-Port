@@ -21,6 +21,8 @@ var destination_position : Vector2i = Vector2(0,-151)
 @onready var attack_timer = $AttackTimer
 @onready var visual_component = $VisualComponent
 var can_shoot : bool = true
+signal death_signal
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +41,6 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	print(area.name + " hit area")
 	
-
 func _on_body_entered(body):
 	if body.has_method("damage"):
 		var attack = Attack.new()
@@ -63,14 +64,15 @@ func shoot_at(hit_box_component : HitboxComponent):
 	self.can_shoot = false
 	self.attack_timer.start()
 	var current_bullet = self.bullet.instantiate() as EnemyBullet
+	current_bullet.current_behavior = Bullet.BULLET_BEHAVIOR.NORMAL
 	self.add_child(current_bullet)
 	current_bullet.set_as_top_level(true)
 	current_bullet.global_transform = self.global_transform
 	current_bullet.global_position.y += 16
-	
-	#self.enemy_animated_sprite.play("Shoot")
-
-
 
 func _on_attack_timer_timeout():
 	self.can_shoot = true
+
+func death():
+	self.death_signal.emit()
+	self.queue_free()
