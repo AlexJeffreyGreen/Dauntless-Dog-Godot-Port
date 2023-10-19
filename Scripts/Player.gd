@@ -12,6 +12,7 @@ var can_shoot : bool = false
 @onready var muzzle = $Muzzle
 @onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
 @onready var visual_component = $VisualComponent
+var explosion = preload("res://Scenes/explosion.tscn")
 
 func _ready():
 	self.flame_animation.play("Idle")
@@ -71,3 +72,6 @@ func get_health() -> int:
 
 func death():
 	self.queue_free()
+	var explosion = self.explosion.instantiate() as Explosion
+	explosion.global_position = self.global_position
+	self.get_tree().current_scene.add_child(explosion)

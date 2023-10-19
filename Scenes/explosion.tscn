@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://rok3hccn126g"]
+
+[ext_resource type="Texture2D" uid="uid://bfxpl3m6xfft8" path="res://Assets/big_circle.png" id="1_l1who"]
+[ext_resource type="Script" path="res://Scripts/Explosion.gd" id="2_kopmd"]
+
+[sub_resource type="Curve" id="Curve_80vb3"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.0765958, 283.132), 0.0, 0.0, 0, 0, Vector2(0.489362, 52.5267), 0.0, 0.0, 0, 0, Vector2(0.829787, -213.95), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_vfmdn"]
+_data = [Vector2(0.00851065, 0.843416), 0.0, 0.0, 0, 0, Vector2(0.46383, 0.309609), 0.0, 0.0, 0, 0, Vector2(0.978723, 0.0960854), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_depf7"]
+offsets = PackedFloat32Array(0.078534, 0.251309, 0.581152, 1)
+colors = PackedColorArray(0.996078, 1, 1, 1, 1, 0.890196, 0, 1, 1, 0.717647, 0, 1, 1, 0, 0, 1)
+
+[node name="Explosion" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 16
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.8
+randomness = 1.0
+texture = ExtResource("1_l1who")
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angular_velocity_min = 0.5
+angular_velocity_max = 1.0
+angle_curve = SubResource("Curve_80vb3")
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_vfmdn")
+color = Color(1, 0.811765, 0.0784314, 1)
+color_ramp = SubResource("Gradient_depf7")
+script = ExtResource("2_kopmd")

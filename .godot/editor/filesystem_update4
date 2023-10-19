@@ -17,3 +17,5 @@ res://Scripts/HealthComponent.gd
 res://Scenes/enemy.tscn
 res://Scenes/Enemies/enemy02.tscn
 res://Scripts/Enemies/enemy02.gd
+res://Scenes/explosion.tscn
+res://Scripts/Explosion.gd

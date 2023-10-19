@@ -6,6 +6,7 @@ var stun_time : float = 0.0
 var spawn_position : Vector2i = Vector2(0,-500)
 var destination_position : Vector2i = Vector2(0,-151)
 
+var explosion = preload("res://Scenes/explosion.tscn")
 
 @export var max_speed = 40
 @export var acceleration = 50.0
@@ -76,3 +77,6 @@ func _on_attack_timer_timeout():
 func death():
 	self.death_signal.emit()
 	self.queue_free()
+	var explosion = self.explosion.instantiate() as Explosion
+	explosion.global_position = self.global_position
+	self.get_tree().current_scene.add_child(explosion)
