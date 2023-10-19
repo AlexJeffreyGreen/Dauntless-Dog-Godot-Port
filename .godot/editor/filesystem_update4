@@ -11,7 +11,3 @@ res://Scenes/enemy_bullet.tscn
 res://Scenes/visual_component.tscn
 res://Scenes/UI/UI.tscn
 res://Scripts/wave_spawner.tscn
-res://Scripts/WaveSpawner.gd
-res://Scripts/Enemy.gd
-res://Scripts/States/Enemy_Flying_State.gd
-res://Scripts/States/Enemy_Idle_State.gd

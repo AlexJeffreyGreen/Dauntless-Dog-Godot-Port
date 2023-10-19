@@ -20,7 +20,12 @@ func _physics_process(delta):
 	if not self.vision_cast.is_colliding():
 		self.lost_player.emit()
 	var hit_box_component = self.vision_cast.get_collider() as HitboxComponent
-	self.actor.shoot_at(hit_box_component)
+	if hit_box_component != null:
+		#TODO: determine fix for collision layer and masking
+		if hit_box_component.get_parent().is_in_group("player"):
+			self.actor.shoot_at(hit_box_component)
+#		else:
+#		self.lost_player.emit()
 	#shoot at player's position on the x
 	#pass
 	#self.actor.global_position.y += 1#self.actor.max_speed
