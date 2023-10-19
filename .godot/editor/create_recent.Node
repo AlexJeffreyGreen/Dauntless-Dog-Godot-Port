@@ -1,3 +1,5 @@
+AudioStreamPlayer2D
+AudioComponent
 CPUParticles2D
 Enemy
 Camera2D
@@ -23,7 +25,6 @@ EnemyIdleState
 Container
 RayCast2D
 FiniteStateMachine
-AudioStreamPlayer2D
 AnimationPlayer
 GPUParticles2D
 RigidBody2D

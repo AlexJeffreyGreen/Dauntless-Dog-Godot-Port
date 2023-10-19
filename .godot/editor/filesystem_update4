@@ -19,3 +19,8 @@ res://Scenes/Enemies/enemy02.tscn
 res://Scripts/Enemies/enemy02.gd
 res://Scenes/explosion.tscn
 res://Scripts/Explosion.gd
+res://Scenes/audio_component.tscn
+res://Scripts/Audio/audio_component.gd
+res://Scripts/HitboxComponent.gd
+res://Scripts/Audio/Audio_Manager.gd
+res://Scripts/States/Enemy_Flying_State.gd

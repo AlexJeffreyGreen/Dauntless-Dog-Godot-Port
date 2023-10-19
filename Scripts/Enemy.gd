@@ -21,6 +21,8 @@ var explosion = preload("res://Scenes/explosion.tscn")
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
 @onready var attack_timer = $AttackTimer
 @onready var visual_component = $VisualComponent
+@onready var hit_box_component = $HitboxComponent
+#@onready var audio_component = $AudioComponent as AudioComponent
 var can_shoot : bool = true
 signal death_signal
 
@@ -31,6 +33,7 @@ func _ready():
 	self.enemy_idle_state.saw_player.connect(self.finite_state_machine._change_state.bind(self.enemy_attack_state))
 	self.enemy_attack_state.lost_player.connect(self.finite_state_machine._change_state.bind(self.enemy_idle_state))
 	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 0)
+	self.hit_box_component.set_process(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,12 +55,14 @@ func _on_body_entered(body):
 
 func _on_hitbox_component_area_entered(area):
 	if area is HitboxComponent:
+		if !area.get_parent().is_in_group("player"): return
 		var hitbox : HitboxComponent = area
 		var attack = Attack.new()
 		attack.attack_damage = self.attack_damage
 		attack.knockback_force = 1
 		attack.attack_position = self.global_position
 		attack.stun_timer = self.stun_time
+		#weird hitbox issue
 		hitbox.damage(attack)
 
 func shoot_at(hit_box_component : HitboxComponent):
@@ -70,13 +75,16 @@ func shoot_at(hit_box_component : HitboxComponent):
 	current_bullet.set_as_top_level(true)
 	current_bullet.global_transform = self.global_transform
 	current_bullet.global_position.y += 16
+	AudioManager.play(AudioManager.SOUND_EFFECT.SHOOT)
 
 func _on_attack_timer_timeout():
 	self.can_shoot = true
 
 func death():
+	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.HIT) #TODO change to EXPLODE when ready
+	AudioManager.play(AudioManager.SOUND_EFFECT.EXPLODE)
 	self.death_signal.emit()
-	self.queue_free()
 	var explosion = self.explosion.instantiate() as Explosion
 	explosion.global_position = self.global_position
 	self.get_tree().current_scene.add_child(explosion)
+	self.queue_free()

@@ -10,7 +10,9 @@ var can_shoot : bool = false
 @onready var bullet_timer = $BulletTimer as Timer
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
-@onready var shoot_sound = $Audio/Shoot as AudioStreamPlayer2D
+@onready var audio_component = $AudioComponent as AudioComponent
+
+
 @onready var visual_component = $VisualComponent
 var explosion = preload("res://Scenes/explosion.tscn")
 
@@ -39,7 +41,8 @@ func _physics_process(delta):
 
 func shoot():
 	self.muzzle_animation_player.play("Shoot")
-	self.shoot_sound.play()
+	AudioManager.play(AudioManager.SOUND_EFFECT.SHOOT)
+	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.SHOOT)
 	self.can_shoot = false
 	self.bullet_timer.start()#.start(.10)
 	var currentBullet = self.bullet.instantiate() as Bullet
@@ -71,7 +74,10 @@ func get_health() -> int:
 	return self.get_node("HealthComponent").health
 
 func death():
-	self.queue_free()
+	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.HIT) #TODO change to EXPLOSION when ready
+	AudioManager.play(AudioManager.SOUND_EFFECT.EXPLODE)
 	var explosion = self.explosion.instantiate() as Explosion
 	explosion.global_position = self.global_position
 	self.get_tree().current_scene.add_child(explosion)
+	self.queue_free()
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=28 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
@@ -6,7 +6,6 @@
 [ext_resource type="Shader" path="res://Shaders/flicker.gdshader" id="2_8bkyb"]
 [ext_resource type="Texture2D" uid="uid://bnniov1fr8vfb" path="res://Assets/Flames_Ship.png" id="3_7ym3o"]
 [ext_resource type="Texture2D" uid="uid://cgfjaji0kxgxk" path="res://Assets/muzzle.png" id="5_pqtve"]
-[ext_resource type="AudioStream" uid="uid://x35vg17al3ju" path="res://Assets/Audio/basic_shoot.wav" id="6_8tfi2"]
 [ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="7_u8qv4"]
 [ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="8_apjqa"]
 [ext_resource type="Script" path="res://Scripts/VisualComponent.gd" id="10_g3qpj"]
@@ -201,14 +200,9 @@ libraries = {
 }
 
 [node name="BulletTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 autostart = true
-
-[node name="Audio" type="Node" parent="."]
-
-[node name="Shoot" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("6_8tfi2")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 3
