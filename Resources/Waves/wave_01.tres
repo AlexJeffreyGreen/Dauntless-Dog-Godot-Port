@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WaveAttribute" load_steps=3 format=3 uid="uid://b8fe8jh4u6o1r"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Wave_Attribute.gd" id="1_fyxuf"]
+[ext_resource type="Resource" uid="uid://0mg08and1eih" path="res://Resources/enemy_01.tres" id="1_v1q07"]
+
+[resource]
+script = ExtResource("1_fyxuf")
+entity_count = 0
+entities = [ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07"), ExtResource("1_v1q07")]

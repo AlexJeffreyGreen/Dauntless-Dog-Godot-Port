@@ -2,12 +2,12 @@ extends Node2D
 class_name WaveSpawner
 
 var enemy_prefabs = {}
+@export var waves = []
+var current_wave : WaveAttribute
 var current_wave_enemies = []
 var current_wave_enemies_count = 18
-var current_wave : int = 0
+var current_wave_number : int = 0
 signal clear_enemy_from_wave
-
-@export var enemey_attribute_collection = []
 
 func _ready():
 	enemy_prefabs["Enemy01"] = preload("res://Scenes/enemy.tscn")
@@ -20,17 +20,17 @@ func _process(delta):
 	pass
 
 func spawn_wave():
-	self.current_wave += 1
+	self.current_wave_number += 1
+	if self.current_wave_number > self.waves.size():
+		return #TODO - add win
+	self.current_wave = self.waves[self.current_wave_number-1]
 	var spawn_x = -512
 	var spawn_y = -151
 	var current_count = 1
-	for i in current_wave_enemies_count:
+	for i in self.current_wave.entities.size():
 		var new_enemy_prefab
-		#if self.current_wave == 1:
 		new_enemy_prefab = enemy_prefabs["Enemy01"].instantiate() as Enemy
-		new_enemy_prefab.enemy_attributes = self.get_enemy_attribute()
-		#else:
-		#	new_enemy_prefab = enemy_prefabs["Enemy02"].instantiate() as Enemy02
+		new_enemy_prefab.enemy_attributes = self.current_wave.entities[i]
 		new_enemy_prefab.destination_position = Vector2(spawn_x,spawn_y)
 		new_enemy_prefab.spawn_position = Vector2(spawn_x,-500)
 		self.add_child(new_enemy_prefab)
@@ -44,9 +44,6 @@ func spawn_wave():
 			spawn_y -= 128
 			spawn_x = -512
 
-func get_enemy_attribute():
-	#TODO - TEMP
-	return self.enemey_attribute_collection[self.current_wave - 1] as Enemy_Attributes
 
 func update_current_wave(enemy : Enemy):
 	self.current_wave_enemies.erase(enemy)

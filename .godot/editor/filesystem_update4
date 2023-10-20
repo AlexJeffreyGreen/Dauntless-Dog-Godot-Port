@@ -20,3 +20,6 @@ res://Scripts/Enemies/Enemy_Attributes.gd
 res://Scripts/Enemy.gd
 res://Scripts/States/Enemy_Attack_State.gd
 res://Resources/enemy_02.tres
+res://Scripts/States/Enemy_Flying_State.gd
+res://Scripts/Enemies/Wave_Attribute.gd
+res://Resources/Waves/wave_01.tres
