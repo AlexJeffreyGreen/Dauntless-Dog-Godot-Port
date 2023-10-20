@@ -73,4 +73,3 @@ script = ExtResource("2_akrby")
 material = SubResource("ShaderMaterial_3p6hv")
 sprite_frames = SubResource("SpriteFrames_fy6gm")
 animation = &"Idle"
-frame_progress = 0.0

@@ -1,1 +1,3 @@
+Enemy_Attributes
+SpriteFrames
 Resource

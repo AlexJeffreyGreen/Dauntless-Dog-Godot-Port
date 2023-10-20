@@ -11,7 +11,7 @@ func _ready() -> void:
 func _enter_state() -> void:
 	self.set_physics_process(true)
 	#possible inheritance
-	self.animator.play("Move")
+	self.animator.play("Attack")
 
 func _exit_state() -> void:
 	self.set_physics_process(false)

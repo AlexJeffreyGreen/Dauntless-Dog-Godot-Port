@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="Enemy_Attributes" load_steps=10 format=3 uid="uid://be750s662otm3"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy_Attributes.gd" id="1_yyfuw"]
+[ext_resource type="Texture2D" uid="uid://qlssihfc4i31" path="res://Assets/Enemy02.png" id="2_pev7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycv1q"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvc6f"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y64v"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c80rf"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g86g3"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixoxk"]
+atlas = ExtResource("2_pev7p")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cu7cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycv1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvc6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y64v")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c80rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g86g3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixoxk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_yyfuw")
+name = "Tikki"
+health = 6
+attack = 2
+attack_timer = 10
+stun_timer = 3
+sprite_frames = SubResource("SpriteFrames_cu7cr")

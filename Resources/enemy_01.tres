@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="Enemy_Attributes" load_steps=11 format=3 uid="uid://0mg08and1eih"]
+
+[ext_resource type="Texture2D" uid="uid://dqk7p1fxtxyrq" path="res://Assets/Enemy01_Enraged.png" id="1_l2afw"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy_Attributes.gd" id="1_wubhw"]
+[ext_resource type="Texture2D" uid="uid://482xlo4rggup" path="res://Assets/Enemy01.png" id="2_eh4jv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43xcx"]
+atlas = ExtResource("1_l2afw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31hru"]
+atlas = ExtResource("1_l2afw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtnb8"]
+atlas = ExtResource("2_eh4jv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thna4"]
+atlas = ExtResource("2_eh4jv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alh5l"]
+atlas = ExtResource("2_eh4jv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohme0"]
+atlas = ExtResource("2_eh4jv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ojjs0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31hru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtnb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31hru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtnb8")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thna4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alh5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohme0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thna4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alh5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohme0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_wubhw")
+name = "Cobra Eye"
+health = 5
+attack = 1
+attack_timer = 5
+stun_timer = 3
+sprite_frames = SubResource("SpriteFrames_ojjs0")

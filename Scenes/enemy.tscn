@@ -104,9 +104,9 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_p5qdp")
 sprite_frames = SubResource("SpriteFrames_ls1fg")
 animation = &"Move"
-frame_progress = 0.325957
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 autostart = true
 
