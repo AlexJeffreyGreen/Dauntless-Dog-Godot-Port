@@ -7,19 +7,20 @@ var attack_damage : float = 5
 var stun_timer : float = 0.0
 var spawn_position : Vector2i = Vector2(0,-500)
 var destination_position : Vector2i = Vector2(0,-151)
+var enemy_type : Enemy_Attributes.ENEMY_TYPE
 
 var explosion = preload("res://Scenes/explosion.tscn")
 
-@export var max_speed = 40
+@export var max_speed = 5
 @export var acceleration = 50.0
 @export var health : int = 3
-@export var enemy_type : Contants.enemy_type = Contants.enemy_type.EYE
 @onready var enemy_animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray_cast_2d : RayCast2D = $RayCast2D
 @onready var bullet = preload("res://Scenes/enemy_bullet.tscn")
 @onready var enemy_flying_state : EnemyFlyingState = $FiniteStateMachine/EnemyFlyingState
 @onready var enemy_attack_state : EnemyAttackState = $FiniteStateMachine/EnemyAttackState
 @onready var enemy_idle_state : EnemyIdleState = $FiniteStateMachine/EnemyIdleState
+@onready var enemy_dive_state : EnemyDiveState = $FiniteStateMachine/EnemyDiveState
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
 @onready var attack_timer : Timer = $AttackTimer
 @onready var visual_component = $VisualComponent
@@ -34,15 +35,21 @@ func _ready():
 	self.enemy_flying_state.arrived_at_location.connect(self.finite_state_machine._change_state.bind(self.enemy_idle_state))
 	self.enemy_idle_state.saw_player.connect(self.finite_state_machine._change_state.bind(self.enemy_attack_state))
 	self.enemy_attack_state.lost_player.connect(self.finite_state_machine._change_state.bind(self.enemy_idle_state))
+	self.enemy_dive_state.dive_complete.connect(self.finite_state_machine._change_state.bind(self.enemy_flying_state))
+	self.enemy_idle_state.dive_at_player.connect(self.finite_state_machine._change_state.bind(self.enemy_dive_state))
 	self.enemy_animated_sprite.material.set_shader_parameter("flash_modifier", 0)
 	self.hit_box_component.set_process(false)
+	self.parse_enemy_attributes()
+	#self.enemy_animated_sprite.sprite_frames.
+	#self.enemy_animated_sprite.sprite_frames = self.enemy_attribute.attack_animation
+
+func parse_enemy_attributes():
 	self.enemy_animated_sprite.sprite_frames = self.enemy_attributes.sprite_frames
 	self.health = self.enemy_attributes.health
 	self.attack_damage = self.enemy_attributes.attack
 	self.attack_timer.wait_time = self.enemy_attributes.attack_timer
 	self.stun_timer = self.enemy_attributes.stun_timer
-	#self.enemy_animated_sprite.sprite_frames.
-	#self.enemy_animated_sprite.sprite_frames = self.enemy_attribute.attack_animation
+	self.enemy_type = self.enemy_attributes.enemy_type
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -70,7 +77,7 @@ func _on_hitbox_component_area_entered(area):
 		attack.attack_damage = self.attack_damage
 		attack.knockback_force = 1
 		attack.attack_position = self.global_position
-		attack.stun_timer = self.stun_time
+		attack.stun_timer = self.stun_timer
 		#weird hitbox issue
 		hitbox.damage(attack)
 

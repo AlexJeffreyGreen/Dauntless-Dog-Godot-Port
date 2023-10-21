@@ -66,3 +66,4 @@ attack = 2
 attack_timer = 10
 stun_timer = 3
 sprite_frames = SubResource("SpriteFrames_cu7cr")
+enemy_type = 1
