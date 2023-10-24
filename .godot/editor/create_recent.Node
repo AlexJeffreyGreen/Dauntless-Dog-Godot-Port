@@ -1,3 +1,7 @@
+AnimatedSprite2D
+ColorRect
+Label
+CanvasLayer
 VisibleOnScreenNotifier2D
 EnemyDiveState
 Timer
@@ -7,17 +11,14 @@ CPUParticles2D
 Enemy
 Camera2D
 WaveSpawner
-CanvasLayer
 UI
 VSlider
 HBoxContainer
-ColorRect
 HSlider
 VisualComponent
 Node
 CollisionShape2D
 HitboxComponent
-AnimatedSprite2D
 Area2D
 HealthComponent
 CharacterBody2D
@@ -29,5 +30,3 @@ RayCast2D
 FiniteStateMachine
 AnimationPlayer
 GPUParticles2D
-RigidBody2D
-Sprite2D

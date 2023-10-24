@@ -1,4 +1,4 @@
+Resource
 WaveAttribute
 Enemy_Attributes
 SpriteFrames
-Resource

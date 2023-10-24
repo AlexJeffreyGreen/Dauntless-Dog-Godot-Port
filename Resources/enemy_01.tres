@@ -85,3 +85,4 @@ attack = 1
 attack_timer = 5
 stun_timer = 3
 sprite_frames = SubResource("SpriteFrames_ojjs0")
+enemy_type = 0

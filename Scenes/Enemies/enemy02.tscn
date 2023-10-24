@@ -68,7 +68,6 @@ animations = [{
 
 [node name="Enemy" instance=ExtResource("1_3biks")]
 script = ExtResource("2_akrby")
-enemy_type = null
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_3p6hv")

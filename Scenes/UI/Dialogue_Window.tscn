@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8qkmonm8rgfa"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Dialogue_Window.gd" id="1_rcbev"]
+[ext_resource type="FontFile" uid="uid://thrmh7pghadd" path="res://Assets/pico-8.ttf" id="2_ck784"]
+[ext_resource type="Texture2D" uid="uid://cfvjhiqavyaj1" path="res://Assets/Portraits/Portrats-Sheet.png" id="3_ed7pv"]
+
+[sub_resource type="Theme" id="Theme_xpvjp"]
+default_font = ExtResource("2_ck784")
+default_font_size = 36
+/fonts/Pico = ExtResource("2_ck784")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7hkg"]
+atlas = ExtResource("3_ed7pv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yb0h"]
+atlas = ExtResource("3_ed7pv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeuht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7hkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yb0h")
+}],
+"loop": true,
+"name": &"Dover",
+"speed": 5.0
+}]
+
+[node name="DialogueWindow" type="CanvasLayer"]
+script = ExtResource("1_rcbev")
+
+[node name="DialogueText" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -144.0
+offset_right = 640.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_xpvjp")
+text = "protect the galaxy."
+metadata/_edit_use_anchors_ = true
+
+[node name="DialoguePortrait" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(192, 640)
+sprite_frames = SubResource("SpriteFrames_jeuht")
+animation = &"Dover"
+frame = 1
+frame_progress = 0.195636
