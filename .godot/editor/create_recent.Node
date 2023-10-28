@@ -1,10 +1,10 @@
+Timer
 AnimatedSprite2D
 ColorRect
 Label
 CanvasLayer
 VisibleOnScreenNotifier2D
 EnemyDiveState
-Timer
 AudioStreamPlayer2D
 AudioComponent
 CPUParticles2D

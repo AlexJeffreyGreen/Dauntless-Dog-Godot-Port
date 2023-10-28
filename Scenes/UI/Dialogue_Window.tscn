@@ -28,13 +28,13 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dover",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="DialogueWindow" type="CanvasLayer"]
 script = ExtResource("1_rcbev")
 
-[node name="DialogueText" type="Label" parent="."]
+[node name="Dialogue_Text" type="Label" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -50,10 +50,9 @@ theme = SubResource("Theme_xpvjp")
 text = "protect the galaxy."
 metadata/_edit_use_anchors_ = true
 
-[node name="DialoguePortrait" type="AnimatedSprite2D" parent="."]
+[node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(192, 640)
 sprite_frames = SubResource("SpriteFrames_jeuht")
 animation = &"Dover"
-frame = 1
-frame_progress = 0.195636
+frame_progress = 0.688961
