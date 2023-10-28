@@ -3,6 +3,7 @@ class_name DialogeWindow
 
 @onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
 @onready var dialogue_text : Label = $Dialogue_Text
+@onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
 var dialogue_cursor_text : String
 var current_dialogue : DialogueEntry
 var debug_str : String = "abcdefghijklmnopqrstuvwxyz ";
@@ -38,6 +39,7 @@ func display_dialogue():
 		if !self.dialogue_portrait.is_playing():
 			var dialogue_animation_str = DialogueEntry.DIALOGUE_ACTOR.keys()[self.current_dialogue.Dialogue_Actor]
 			self.dialogue_portrait.play(dialogue_animation_str)
+			self.dialogue_button.play("Idle")
 #		if self.skip_through == false:	
 		var currentLengthOfDialogue = len(self.dialogue_cursor_text)
 		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue + 1]
@@ -53,8 +55,10 @@ func display_dialogue():
 		self.dialogue_portrait.stop() # Stop Animation
 		self.dialogue_portrait.frame = 0 #Reset the Animation
 		self.dialogue_portrait.visible = false
+		self.dialogue_button.visible = false
 	else:
 		self.dialogue_portrait.visible = true
+		self.dialogue_button.visible = true
 
 func random_string(length : int):
 	var word: String

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8qkmonm8rgfa"]
+[gd_scene load_steps=13 format=3 uid="uid://b8qkmonm8rgfa"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Dialogue_Window.gd" id="1_rcbev"]
 [ext_resource type="FontFile" uid="uid://thrmh7pghadd" path="res://Assets/pico-8.ttf" id="2_ck784"]
 [ext_resource type="Texture2D" uid="uid://cfvjhiqavyaj1" path="res://Assets/Portraits/Portrats-Sheet.png" id="3_ed7pv"]
+[ext_resource type="Texture2D" uid="uid://ba50yflhxl7s" path="res://Assets/button_x.png" id="4_1rjm8"]
 
 [sub_resource type="Theme" id="Theme_xpvjp"]
 default_font = ExtResource("2_ck784")
@@ -31,6 +32,38 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsyuh"]
+atlas = ExtResource("4_1rjm8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqc6k"]
+atlas = ExtResource("4_1rjm8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q565e"]
+atlas = ExtResource("4_1rjm8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tjrbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsyuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqc6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q565e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqc6k")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
 [node name="DialogueWindow" type="CanvasLayer"]
 script = ExtResource("1_rcbev")
 
@@ -55,4 +88,11 @@ texture_filter = 1
 position = Vector2(192, 640)
 sprite_frames = SubResource("SpriteFrames_jeuht")
 animation = &"Dover"
-frame_progress = 0.688961
+frame_progress = 0.0728179
+
+[node name="Dialogue_Button" type="AnimatedSprite2D" parent="."]
+position = Vector2(1056, 672)
+scale = Vector2(0.5, 0.53125)
+sprite_frames = SubResource("SpriteFrames_tjrbo")
+animation = &"Idle"
+frame_progress = 0.690887
