@@ -1,12 +1,8 @@
-res://Scenes/UI/Dialogue_Window.tscn
+res://Scenes/main.tscn
 res://Scripts/UI/UI.gd
 res://Shaders/flicker.gdshader
 res://Resources/enemy_01.tres
 res://Resources/Waves/wave_01.tres
-res://Scripts/UI/Dialogue_Entry.gd
-res://Scripts/UI/Dialogue_Window.gd
-res://Scripts/Global.gd
-res://Scenes/main.tscn
 res://Scenes/player.tscn
 res://Scenes/bullet.tscn
 res://Scenes/stars.tscn
@@ -19,3 +15,5 @@ res://Scenes/enemy.tscn
 res://Scenes/Enemies/enemy02.tscn
 res://Scenes/explosion.tscn
 res://Scenes/audio_component.tscn
+res://Scenes/UI/Dialogue_Window.tscn
+res://Scripts/UI/Dialogue_Window.gd

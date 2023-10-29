@@ -2,8 +2,9 @@ extends CanvasLayer
 class_name DialogeWindow
 
 @onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
-@onready var dialogue_text : Label = $Dialogue_Text
 @onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
+@onready var dialogue_text : Label = $Dialogue_Text
+
 var dialogue_cursor_text : String
 var current_dialogue : DialogueEntry
 var debug_str : String = "abcdefghijklmnopqrstuvwxyz ";
@@ -11,6 +12,8 @@ var dialogues = []
 var skip_through : bool = false # not really needed
 
 func _ready():
+#	if self.dialogue_text == null:
+#		self.dialogue_text = self.get_node("Dialogue_Text")
 	self.clear_dialogue_text()
 	
 func add_dialogue(entry : DialogueEntry):
@@ -42,6 +45,8 @@ func display_dialogue():
 			self.dialogue_button.play("Idle")
 #		if self.skip_through == false:	
 		var currentLengthOfDialogue = len(self.dialogue_cursor_text)
+		if currentLengthOfDialogue == 0:
+			currentLengthOfDialogue = -1
 		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue + 1]
 		self.dialogue_cursor_text += nextStringValue
 #		else:
@@ -50,6 +55,7 @@ func display_dialogue():
 #			self.dialogue_cursor_text = self.current_dialogue.Dialogue_Text
 		
 		self.dialogue_text.text = self.dialogue_cursor_text
+		print(self.dialogue_text.text)
 		
 	if self.current_dialogue == null:
 		self.dialogue_portrait.stop() # Stop Animation

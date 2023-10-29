@@ -68,30 +68,30 @@ animations = [{
 script = ExtResource("1_rcbev")
 
 [node name="Dialogue_Text" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -344.0
-offset_top = -144.0
-offset_right = 640.0
-offset_bottom = -8.0
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.811
+anchor_right = 0.906
+anchor_bottom = 0.989
+offset_top = 0.0799561
+offset_right = 0.319946
+offset_bottom = 7.91998
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_xpvjp")
-text = "protect the galaxy."
+text = "protect the galasdf asdf asdf asdf sadfasdf asdfasdfasfasfasdfasdf."
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(192, 640)
+position = Vector2(224, 640)
 sprite_frames = SubResource("SpriteFrames_jeuht")
 animation = &"Dover"
 frame_progress = 0.0728179
 
 [node name="Dialogue_Button" type="AnimatedSprite2D" parent="."]
-position = Vector2(1056, 672)
+position = Vector2(1216, 688)
 scale = Vector2(0.5, 0.53125)
 sprite_frames = SubResource("SpriteFrames_tjrbo")
 animation = &"Idle"
