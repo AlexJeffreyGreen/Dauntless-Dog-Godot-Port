@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://eo8bmrc8jhha"]
+[gd_scene load_steps=7 format=3 uid="uid://eo8bmrc8jhha"]
 
 [ext_resource type="PackedScene" uid="uid://dum61asv4utux" path="res://Scenes/player.tscn" id="1_8e3ey"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_dvj1b"]
 [ext_resource type="PackedScene" uid="uid://c583phb2opnlo" path="res://Scenes/stars.tscn" id="2_2ifgf"]
-[ext_resource type="PackedScene" uid="uid://cwibkpx8150yh" path="res://Scenes/UI/UI.tscn" id="4_kgsbu"]
 [ext_resource type="Script" path="res://Scripts/WaveSpawner.gd" id="5_ri1va"]
 [ext_resource type="Resource" uid="uid://b8fe8jh4u6o1r" path="res://Resources/Waves/wave_01.tres" id="6_oipe3"]
-[ext_resource type="PackedScene" uid="uid://b8qkmonm8rgfa" path="res://Scenes/UI/Dialogue_Window.tscn" id="7_gs5v4"]
+[ext_resource type="PackedScene" uid="uid://b8qkmonm8rgfa" path="res://Scenes/UI/UI.tscn" id="7_gs5v4"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -23,19 +22,10 @@ autostart = true
 position = Vector2(0, -316)
 scale = Vector2(10.12, 5.64)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_kgsbu")]
-offset_left = -566.0
-offset_top = -332.0
-offset_right = -566.0
-offset_bottom = -332.0
-
 [node name="WaveSpawner" type="Node2D" parent="."]
 script = ExtResource("5_ri1va")
 waves = [ExtResource("6_oipe3")]
 
-[node name="DialogueWindow" parent="." instance=ExtResource("7_gs5v4")]
+[node name="UI" parent="." instance=ExtResource("7_gs5v4")]
 
 [connection signal="timeout" from="Camera/Shaketimer" to="Camera" method="_on_shaketimer_timeout"]

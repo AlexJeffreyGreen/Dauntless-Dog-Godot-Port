@@ -4,6 +4,7 @@ class_name DialogeWindow
 @onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
 @onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
 @onready var dialogue_text : Label = $Dialogue_Text
+@onready var dialogue_wait_timer : Timer = $Dialogue_Wait_Timer
 
 var dialogue_cursor_text : String
 var current_dialogue : DialogueEntry
@@ -18,6 +19,7 @@ func _ready():
 	
 func add_dialogue(entry : DialogueEntry):
 	self.dialogues.push_back(entry)
+	self.dialogue_wait_timer.start()
 
 func remove_dialogue(entry : DialogueEntry):
 	var current_dialog = self.dialogues.pop_front()
@@ -38,16 +40,14 @@ func _process(delta):
 	self.display_dialogue()
 
 func display_dialogue():
-	if self.current_dialogue != null && (len(self.dialogue_cursor_text) < len(self.current_dialogue.Dialogue_Text) - 1):
+	if self.current_dialogue != null && (len(self.dialogue_cursor_text) < len(self.current_dialogue.Dialogue_Text)):
 		if !self.dialogue_portrait.is_playing():
 			var dialogue_animation_str = DialogueEntry.DIALOGUE_ACTOR.keys()[self.current_dialogue.Dialogue_Actor]
 			self.dialogue_portrait.play(dialogue_animation_str)
 			self.dialogue_button.play("Idle")
 #		if self.skip_through == false:	
 		var currentLengthOfDialogue = len(self.dialogue_cursor_text)
-		if currentLengthOfDialogue == 0:
-			currentLengthOfDialogue = -1
-		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue + 1]
+		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue]
 		self.dialogue_cursor_text += nextStringValue
 #		else:
 #			self.skip_through = false
@@ -90,3 +90,9 @@ func clear_dialogue_text():
 #		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue + 1]
 #		self.dialogue_cursor_text += nextStringValue
 #		self.dialogue_text.text = self.dialogue_cursor_text
+
+
+func _on_dialgue_wait_timer_timeout():
+	self.clear_dialogue_text()
+	self.current_dialogue = self.dialogues.pop_front()
+	#pass # Replace with function body.

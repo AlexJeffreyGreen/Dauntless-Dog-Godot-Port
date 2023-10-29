@@ -20,6 +20,9 @@ func _process(delta):
 	pass
 
 func spawn_wave():
+	#TODO fix this to call some auto load process
+	self.new_wave_message()
+	
 	self.current_wave_number += 1
 	if self.current_wave_number > self.waves.size():
 		return #TODO - add win
@@ -50,3 +53,11 @@ func update_current_wave(enemy : Enemy):
 	print("current wave count - " + str(self.current_wave_enemies.size()))
 	if self.current_wave_enemies.size() <= 0:
 		self.spawn_wave()
+
+func new_wave_message():
+	var window = self.get_parent().get_node("UI") as DialogeWindow
+	var dialogue_entry = DialogueEntry.new()
+	dialogue_entry.Dialogue_Actor = DialogueEntry.DIALOGUE_ACTOR.Dover
+	dialogue_entry.Dialogue_Portrait = null #TODO
+	dialogue_entry.Dialogue_Text = "new wave approaching. prepare your engines."
+	window.add_dialogue(dialogue_entry)

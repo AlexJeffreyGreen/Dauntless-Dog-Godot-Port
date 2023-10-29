@@ -1,6 +1,6 @@
+Timer
 DialogeWindow
 AnimatedSprite2D
-Timer
 ColorRect
 Label
 CanvasLayer
@@ -30,4 +30,3 @@ Container
 RayCast2D
 FiniteStateMachine
 AnimationPlayer
-GPUParticles2D
