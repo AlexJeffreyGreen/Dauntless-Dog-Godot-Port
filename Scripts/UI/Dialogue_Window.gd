@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name DialogeWindow
+class_name DialogueWindow
 
 @onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
 @onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
@@ -13,8 +13,6 @@ var dialogues = []
 var skip_through : bool = false # not really needed
 
 func _ready():
-#	if self.dialogue_text == null:
-#		self.dialogue_text = self.get_node("Dialogue_Text")
 	self.clear_dialogue_text()
 	
 func add_dialogue(entry : DialogueEntry):

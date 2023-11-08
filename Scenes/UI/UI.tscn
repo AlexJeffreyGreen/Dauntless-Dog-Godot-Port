@@ -117,28 +117,28 @@ script = ExtResource("1_rcbev")
 [node name="Dialogue_Text" type="Label" parent="."]
 anchors_preset = -1
 anchor_left = 0.25
-anchor_top = 0.811
-anchor_right = 0.906
-anchor_bottom = 0.989
-offset_top = 0.0799561
-offset_right = 0.319946
-offset_bottom = 7.91998
+anchor_top = 0.7985
+anchor_right = 0.86225
+anchor_bottom = 0.92025
+offset_left = -40.0
+offset_top = 65.92
+offset_right = -79.6801
+offset_bottom = 38.08
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_xpvjp")
 text = "protect the galasdf asdf asdf asdf sadfasdf asdfasdfasfasfasdfasdf."
 autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(224, 640)
+position = Vector2(192, 1152)
 sprite_frames = SubResource("SpriteFrames_jeuht")
 animation = &"Dover"
 frame_progress = 0.0728179
 
 [node name="Dialogue_Button" type="AnimatedSprite2D" parent="."]
-position = Vector2(1216, 688)
+position = Vector2(992, 1216)
 scale = Vector2(0.5, 0.53125)
 sprite_frames = SubResource("SpriteFrames_tjrbo")
 animation = &"Idle"
@@ -165,9 +165,9 @@ anchor_top = 0.746
 anchor_right = 0.08
 anchor_bottom = 1.0
 offset_left = -0.360001
-offset_top = 39.8799
+offset_top = 134.12
 offset_right = 56.6
-offset_bottom = 108.0
+offset_bottom = 65.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 8
 

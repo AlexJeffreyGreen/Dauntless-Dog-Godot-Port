@@ -15,6 +15,7 @@ res://Scenes/enemy.tscn
 res://Scenes/Enemies/enemy02.tscn
 res://Scenes/explosion.tscn
 res://Scenes/audio_component.tscn
-res://Scenes/UI/Dialogue_Window.tscn
 res://Scripts/UI/Dialogue_Window.gd
 res://Scripts/WaveSpawner.gd
+res://Scripts/Player.gd
+res://Scripts/Camera.gd

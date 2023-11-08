@@ -55,7 +55,7 @@ func update_current_wave(enemy : Enemy):
 		self.spawn_wave()
 
 func new_wave_message():
-	var window = self.get_parent().get_node("UI") as DialogeWindow
+	var window = self.get_parent().get_node("UI") as DialogueWindow
 	var dialogue_entry = DialogueEntry.new()
 	dialogue_entry.Dialogue_Actor = DialogueEntry.DIALOGUE_ACTOR.Dover
 	dialogue_entry.Dialogue_Portrait = null #TODO
