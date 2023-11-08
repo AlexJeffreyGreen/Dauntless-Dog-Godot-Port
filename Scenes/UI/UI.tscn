@@ -120,9 +120,9 @@ anchor_left = 0.25
 anchor_top = 0.7985
 anchor_right = 0.86225
 anchor_bottom = 0.92025
-offset_left = -40.0
+offset_left = 24.0
 offset_top = 65.92
-offset_right = -79.6801
+offset_right = -15.6801
 offset_bottom = 38.08
 grow_horizontal = 2
 grow_vertical = 0
@@ -132,13 +132,13 @@ autowrap_mode = 2
 
 [node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(192, 1152)
+position = Vector2(256, 1152)
 sprite_frames = SubResource("SpriteFrames_jeuht")
 animation = &"Dover"
 frame_progress = 0.0728179
 
 [node name="Dialogue_Button" type="AnimatedSprite2D" parent="."]
-position = Vector2(992, 1216)
+position = Vector2(1056, 1216)
 scale = Vector2(0.5, 0.53125)
 sprite_frames = SubResource("SpriteFrames_tjrbo")
 animation = &"Idle"
@@ -164,9 +164,9 @@ anchor_left = 0.037
 anchor_top = 0.746
 anchor_right = 0.08
 anchor_bottom = 1.0
-offset_left = -0.360001
+offset_left = 23.64
 offset_top = 134.12
-offset_right = 56.6
+offset_right = 80.6
 offset_bottom = 65.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 8

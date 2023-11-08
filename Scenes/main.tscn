@@ -12,10 +12,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_8e3ey")]
 
-[node name="Stars" parent="." instance=ExtResource("2_2ifgf")]
-position = Vector2(0, -640)
-scale = Vector2(10.12, 5.64)
-
 [node name="WaveSpawner" type="Node2D" parent="."]
 script = ExtResource("5_ri1va")
 waves = [ExtResource("6_oipe3")]
@@ -27,5 +23,8 @@ script = ExtResource("1_dvj1b")
 
 [node name="Shaketimer" type="Timer" parent="DauntlessCamera"]
 autostart = true
+
+[node name="Stars" parent="." instance=ExtResource("2_2ifgf")]
+position = Vector2(-640, -776)
 
 [connection signal="timeout" from="DauntlessCamera/Shaketimer" to="DauntlessCamera" method="_on_shaketimer_timeout"]
