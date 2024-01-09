@@ -14,8 +14,10 @@ var flames_position = 64
 var spawn_position : Vector2i = Vector2(0,1500)
 var destination_position: Vector2i = Vector2(0, 350)
 
-@onready var player_flying_state : EnemyDiveState = $FiniteStateMachine/EnemyDiveState
+@onready var player_interactive_state = $FiniteStateMachine/PlayerInteractiveState
+@onready var player_flying_state = $FiniteStateMachine/PlayerFlyingState
 @onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
+
 
 @onready var visual_component = $VisualComponent
 @onready var hit_box_component = $HitboxComponent
@@ -26,6 +28,7 @@ func _ready():
 	self.flame_animation.play("Idle")
 	self.body_animation.play("Idle")
 	Global.player = self
+	self.player_flying_state.arrived_at_location.connect(self.finite_state_machine._change_state.bind(self.player_interactive_state))
 	pass
 
 func _process(delta):

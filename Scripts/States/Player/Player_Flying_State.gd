@@ -27,3 +27,10 @@ extends EnemyFlyingState
 #		self.actor.global_position.y = self.destination_position.y
 #		self.arrived_at_location.emit()
 #		self.actor.hit_box_component.set_process(true)
+
+func _physics_process(delta):
+	self.actor.global_position.y -= 1 * self.actor.max_speed
+	if self.actor.global_position.floor().y <= self.destination_position.floor().y:
+		self.actor.global_position.y = self.destination_position.y
+		self.arrived_at_location.emit()
+		self.actor.hit_box_component.set_process(true)

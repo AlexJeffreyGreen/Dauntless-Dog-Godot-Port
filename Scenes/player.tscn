@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=31 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/VisualComponent.gd" id="10_g3qpj"]
 [ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="10_l34vy"]
 [ext_resource type="Script" path="res://Scripts/States/Player/Player_Flying_State.gd" id="11_hqt24"]
+[ext_resource type="Script" path="res://Scripts/States/Player/Player_Interactive_State.gd" id="12_smnwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w727f"]
 size = Vector2(48, 64)
@@ -234,6 +235,11 @@ current_state = NodePath("PlayerFlyingState")
 
 [node name="PlayerFlyingState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
 script = ExtResource("11_hqt24")
+actor = NodePath("../..")
+animator = NodePath("../../Muzzle/AnimatedSprite2D")
+
+[node name="PlayerInteractiveState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("12_smnwe")
 actor = NodePath("../..")
 animator = NodePath("../../Muzzle/AnimatedSprite2D")
 

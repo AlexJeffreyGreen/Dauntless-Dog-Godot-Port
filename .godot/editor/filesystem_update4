@@ -21,3 +21,4 @@ res://Scripts/UI/Dialogue_Entry.gd
 res://Scripts/States/Player/Player_Flying_State.gd
 res://Scripts/States/State.gd
 res://Scripts/Player.gd
+res://Scripts/States/Player/Player_Interactive_State.gd
