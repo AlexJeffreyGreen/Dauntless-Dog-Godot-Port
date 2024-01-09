@@ -89,5 +89,7 @@ func clear_dialogue_text():
 func _on_dialgue_wait_timer_timeout():
 	self.clear_dialogue_text()
 	self.current_dialogue = self.dialogues.pop_front()
+	if self.current_dialogue == null:
+		return
 	self.dialogue_wait_timer.start()
 	#pass # Replace with function body.
