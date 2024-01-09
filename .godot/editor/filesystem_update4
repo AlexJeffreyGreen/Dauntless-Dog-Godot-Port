@@ -17,5 +17,3 @@ res://Scenes/explosion.tscn
 res://Scenes/audio_component.tscn
 res://Scripts/UI/Dialogue_Window.gd
 res://Scripts/WaveSpawner.gd
-res://Scripts/Player.gd
-res://Scripts/Camera.gd

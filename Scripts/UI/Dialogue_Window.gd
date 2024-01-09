@@ -3,8 +3,9 @@ class_name DialogueWindow
 
 @onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
 @onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
-@onready var dialogue_text : Label = $Dialogue_Text
+@onready var dialogue_text = $MarginContainer/Panel/MarginContainer/Dialogue_Text
 @onready var dialogue_wait_timer : Timer = $Dialogue_Wait_Timer
+@onready var primary_container = $MarginContainer
 
 var dialogue_cursor_text : String
 var current_dialogue : DialogueEntry
@@ -47,22 +48,18 @@ func display_dialogue():
 		var currentLengthOfDialogue = len(self.dialogue_cursor_text)
 		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue]
 		self.dialogue_cursor_text += nextStringValue
-#		else:
-#			self.skip_through = false
-#			self.dialogue_cursor_text = ""
-#			self.dialogue_cursor_text = self.current_dialogue.Dialogue_Text
-		
 		self.dialogue_text.text = self.dialogue_cursor_text
-		print(self.dialogue_text.text)
 		
 	if self.current_dialogue == null:
 		self.dialogue_portrait.stop() # Stop Animation
 		self.dialogue_portrait.frame = 0 #Reset the Animation
 		self.dialogue_portrait.visible = false
 		self.dialogue_button.visible = false
+		self.primary_container.visible = false
 	else:
 		self.dialogue_portrait.visible = true
 		self.dialogue_button.visible = true
+		self.primary_container.visible = true
 
 func random_string(length : int):
 	var word: String
