@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dum61asv4utux"]
+[gd_scene load_steps=30 format=3 uid="uid://dum61asv4utux"]
 
 [ext_resource type="Texture2D" uid="uid://ban5xn5y5xoql" path="res://Assets/Ship.png" id="1_5wk37"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mh2is"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/HitboxComponent.gd" id="7_u8qv4"]
 [ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="8_apjqa"]
 [ext_resource type="Script" path="res://Scripts/VisualComponent.gd" id="10_g3qpj"]
+[ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="10_l34vy"]
+[ext_resource type="Script" path="res://Scripts/States/Player/Player_Flying_State.gd" id="11_hqt24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w727f"]
 size = Vector2(48, 64)
@@ -225,6 +227,15 @@ flash_timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="VisualComponent"]
 wait_time = 0.1
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("10_l34vy")
+current_state = NodePath("PlayerFlyingState")
+
+[node name="PlayerFlyingState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
+script = ExtResource("11_hqt24")
+actor = NodePath("../..")
+animator = NodePath("../../Muzzle/AnimatedSprite2D")
 
 [connection signal="animation_finished" from="Muzzle/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

@@ -33,10 +33,6 @@ func _process(delta):
 		#self.debug_add_dialogue()
 		self.clear_dialogue_text()
 		self.current_dialogue = self.dialogues.pop_front()
-		#self.current_dialogue = self.dialogues.pop_front()
-#	if Input.is_action_just_pressed("Confirm"):
-#		if self.current_dialogue != null:
-#			self.skip_through = true
 	self.display_dialogue()
 
 func display_dialogue():
@@ -77,14 +73,6 @@ func debug_add_dialogue():
 func clear_dialogue_text():
 	self.dialogue_text.text = ""
 	self.dialogue_cursor_text = ""
-
-#func _on_typewriter_timer_timeout():
-#	if self.current_dialogue != null && len(self.dialogue_cursor_text) < len(self.current_dialogue.Dialogue_Text) - 1:
-#		var currentLengthOfDialogue = len(self.dialogue_cursor_text)
-#		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue + 1]
-#		self.dialogue_cursor_text += nextStringValue
-#		self.dialogue_text.text = self.dialogue_cursor_text
-
 
 func _on_dialgue_wait_timer_timeout():
 	self.clear_dialogue_text()

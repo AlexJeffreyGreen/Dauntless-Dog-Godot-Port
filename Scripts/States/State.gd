@@ -3,7 +3,7 @@ extends Node
 
 signal state_finished
 
-@export var actor : Enemy
+@export var actor : CharacterBody2D
 @export var animator : AnimatedSprite2D
 @export var vision_cast : RayCast2D
 

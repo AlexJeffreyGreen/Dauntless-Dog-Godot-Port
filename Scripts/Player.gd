@@ -3,16 +3,23 @@ class_name Player
 
 var can_shoot : bool = false
 @export var speed : float = 400
-@export var flames_position = 64
+var max_speed : float = 5
+var flames_position = 64
 @onready var flame_animation = $FlameAnimation
 @onready var body_animation = $BodyAnimation
 @onready var bullet = preload("res://Scenes/bullet.tscn")
 @onready var bullet_timer = $BulletTimer as Timer
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
+var spawn_position : Vector2i = Vector2(0,1500)
+var destination_position: Vector2i = Vector2(0, 350)
 
+@onready var player_flying_state : EnemyDiveState = $FiniteStateMachine/EnemyDiveState
+@onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
 
 @onready var visual_component = $VisualComponent
+@onready var hit_box_component = $HitboxComponent
+
 var explosion = preload("res://Scenes/explosion.tscn")
 
 func _ready():

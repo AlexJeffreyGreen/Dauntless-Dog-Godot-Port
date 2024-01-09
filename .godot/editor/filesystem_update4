@@ -18,3 +18,6 @@ res://Scenes/audio_component.tscn
 res://Scripts/UI/Dialogue_Window.gd
 res://Scripts/WaveSpawner.gd
 res://Scripts/UI/Dialogue_Entry.gd
+res://Scripts/States/Player/Player_Flying_State.gd
+res://Scripts/States/State.gd
+res://Scripts/Player.gd
