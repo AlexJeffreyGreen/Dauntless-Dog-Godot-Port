@@ -3,6 +3,8 @@ class_name WaveSpawner
 
 var enemy_prefabs = {}
 @export var waves = []
+@export var starting_y: int = -151
+@export var starting_x: int = -512
 var current_wave : WaveAttribute
 var current_wave_enemies = []
 var current_wave_enemies_count = 18
@@ -27,8 +29,8 @@ func spawn_wave():
 	if self.current_wave_number > self.waves.size():
 		return #TODO - add win
 	self.current_wave = self.waves[self.current_wave_number-1]
-	var spawn_x = -512
-	var spawn_y = -151
+	var spawn_x = self.starting_x #-512
+	var spawn_y = self.starting_y #-151
 	var current_count = 1
 	for i in self.current_wave.entities.size():
 		var new_enemy_prefab

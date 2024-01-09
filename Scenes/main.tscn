@@ -15,6 +15,7 @@ y_sort_enabled = true
 [node name="WaveSpawner" type="Node2D" parent="."]
 script = ExtResource("5_ri1va")
 waves = [ExtResource("6_oipe3")]
+starting_y = -400
 
 [node name="UI" parent="." instance=ExtResource("7_gs5v4")]
 
