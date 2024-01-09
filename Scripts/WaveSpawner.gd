@@ -61,3 +61,8 @@ func new_wave_message():
 	dialogue_entry.Dialogue_Portrait = null #TODO
 	dialogue_entry.Dialogue_Text = "new wave approaching. prepare your engines. this is not a drill."
 	window.add_dialogue(dialogue_entry)
+	dialogue_entry = DialogueEntry.new()
+	dialogue_entry.Dialogue_Actor = DialogueEntry.DIALOGUE_ACTOR.Dover
+	dialogue_entry.Dialogue_Portrait = null #TODO
+	dialogue_entry.Dialogue_Text = "protect the galaxy."
+	window.add_dialogue(dialogue_entry)

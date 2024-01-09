@@ -19,6 +19,28 @@ default_font = ExtResource("2_ck784")
 default_font_size = 36
 /fonts/Pico = ExtResource("2_ck784")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7hkg"]
+atlas = ExtResource("3_ed7pv")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yb0h"]
+atlas = ExtResource("3_ed7pv")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeuht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7hkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yb0h")
+}],
+"loop": true,
+"name": &"Dover",
+"speed": 10.0
+}]
+
 [sub_resource type="ImageTexture" id="ImageTexture_yppsn"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_1k2pm"]
@@ -65,28 +87,6 @@ border_width_right = 8
 border_width_bottom = 8
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a7hkg"]
-atlas = ExtResource("3_ed7pv")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1yb0h"]
-atlas = ExtResource("3_ed7pv")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jeuht"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a7hkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1yb0h")
-}],
-"loop": true,
-"name": &"Dover",
-"speed": 10.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsyuh"]
 atlas = ExtResource("4_1rjm8")
 region = Rect2(0, 0, 128, 128)
@@ -122,13 +122,13 @@ animations = [{
 [node name="DialogueWindow" type="CanvasLayer"]
 script = ExtResource("1_rcbev")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="DialogueTextbox" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 264.0
-offset_top = -192.0
+offset_left = 272.0
+offset_top = -184.0
 offset_right = -128.0
 offset_bottom = -64.0
 grow_horizontal = 2
@@ -138,11 +138,11 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="DialogueTextbox"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kk3na")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueTextbox/Panel"]
 layout_mode = 0
 offset_right = 888.0
 offset_bottom = 128.0
@@ -150,21 +150,57 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 
-[node name="Dialogue_Text" type="Label" parent="MarginContainer/Panel/MarginContainer"]
+[node name="Dialogue_Text" type="Label" parent="DialogueTextbox/Panel/MarginContainer"]
 layout_mode = 2
 theme = SubResource("Theme_xpvjp")
 text = "protect the galasdf asdf asdf asdf sadfasdf asdfasdfasfasfasdfasdf."
 autowrap_mode = 2
+
+[node name="DialoguePortrait" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = -184.0
+offset_right = -1016.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Panel" type="Panel" parent="DialoguePortrait"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kk3na")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePortrait/Panel"]
+layout_mode = 0
+offset_right = 888.0
+offset_bottom = 128.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+
+[node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="DialoguePortrait/Panel/MarginContainer"]
+texture_filter = 1
+position = Vector2(60, 60)
+scale = Vector2(0.8125, 0.812501)
+sprite_frames = SubResource("SpriteFrames_jeuht")
+animation = &"Dover"
+frame_progress = 0.0728179
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 1.0
-offset_bottom = -1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oywxk")
@@ -178,8 +214,8 @@ anchor_right = 0.08
 anchor_bottom = 1.0
 offset_left = 23.64
 offset_top = 134.12
-offset_right = 80.6
-offset_bottom = 65.0
+offset_right = 66.6
+offset_bottom = 47.0
 scale = Vector2(0.5, 0.5)
 theme_override_constants/separation = 8
 
@@ -229,13 +265,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Borders" type="Node" parent="."]
-
-[node name="Dialogue_Portrait" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(192, 1152)
-sprite_frames = SubResource("SpriteFrames_jeuht")
-animation = &"Dover"
-frame_progress = 0.0728179
 
 [node name="Dialogue_Button" type="AnimatedSprite2D" parent="."]
 position = Vector2(1128, 1200)

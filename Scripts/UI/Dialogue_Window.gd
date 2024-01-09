@@ -1,11 +1,12 @@
 extends CanvasLayer
 class_name DialogueWindow
 
-@onready var dialogue_portrait : AnimatedSprite2D = $Dialogue_Portrait
+@onready var dialogue_portrait = $DialoguePortrait/Panel/MarginContainer/Dialogue_Portrait
 @onready var dialogue_button : AnimatedSprite2D = $Dialogue_Button
-@onready var dialogue_text = $MarginContainer/Panel/MarginContainer/Dialogue_Text
+@onready var dialogue_text = $DialogueTextbox/Panel/MarginContainer/Dialogue_Text
 @onready var dialogue_wait_timer : Timer = $Dialogue_Wait_Timer
-@onready var primary_container = $MarginContainer
+@onready var primary_container = $DialogueTextbox
+@onready var secondary_container = $DialoguePortrait
 
 var dialogue_cursor_text : String
 var current_dialogue : DialogueEntry
@@ -49,17 +50,15 @@ func display_dialogue():
 		var nextStringValue = self.current_dialogue.Dialogue_Text[currentLengthOfDialogue]
 		self.dialogue_cursor_text += nextStringValue
 		self.dialogue_text.text = self.dialogue_cursor_text
-		
+	
+	self.dialogue_portrait.visible = (self.current_dialogue != null)
+	self.dialogue_button.visible = (self.current_dialogue != null)
+	self.primary_container.visible = (self.current_dialogue != null)
+	self.secondary_container.visible = (self.current_dialogue != null)
+	
 	if self.current_dialogue == null:
 		self.dialogue_portrait.stop() # Stop Animation
 		self.dialogue_portrait.frame = 0 #Reset the Animation
-		self.dialogue_portrait.visible = false
-		self.dialogue_button.visible = false
-		self.primary_container.visible = false
-	else:
-		self.dialogue_portrait.visible = true
-		self.dialogue_button.visible = true
-		self.primary_container.visible = true
 
 func random_string(length : int):
 	var word: String
@@ -90,4 +89,5 @@ func clear_dialogue_text():
 func _on_dialgue_wait_timer_timeout():
 	self.clear_dialogue_text()
 	self.current_dialogue = self.dialogues.pop_front()
+	self.dialogue_wait_timer.start()
 	#pass # Replace with function body.
