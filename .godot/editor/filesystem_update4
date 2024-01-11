@@ -21,3 +21,4 @@ res://Scenes/explosion.tscn
 res://Scenes/audio_component.tscn
 res://Scripts/Entities/Entity.gd
 res://Scripts/Player.gd
+res://Scenes/Effects/pico_explosion.tscn

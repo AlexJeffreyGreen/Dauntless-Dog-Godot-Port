@@ -1,3 +1,5 @@
+GPUParticles2D
+CPUParticles2D
 PlayerInteractiveState
 PlayerFlyingState
 MarginContainer
@@ -11,10 +13,8 @@ AnimatedSprite2D
 Label
 CanvasLayer
 VisibleOnScreenNotifier2D
-EnemyDiveState
 AudioStreamPlayer2D
 AudioComponent
-CPUParticles2D
 Enemy
 Camera2D
 WaveSpawner
@@ -29,5 +29,3 @@ Area2D
 HealthComponent
 CharacterBody2D
 Node2D
-EnemyFlyingState
-EnemyIdleState
