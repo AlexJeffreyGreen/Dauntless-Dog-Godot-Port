@@ -1,5 +1,5 @@
 class_name PlayerFlyingState
-extends EnemyFlyingState
+extends EntityFlyingState
 
 
 

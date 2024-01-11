@@ -236,13 +236,12 @@ current_state = NodePath("PlayerFlyingState")
 [node name="PlayerFlyingState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
 script = ExtResource("11_hqt24")
 actor = NodePath("../..")
-animator = NodePath("../../Muzzle/AnimatedSprite2D")
+animator = NodePath("../../BodyAnimation")
 
 [node name="PlayerInteractiveState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
 script = ExtResource("12_smnwe")
 actor = NodePath("../..")
-animator = NodePath("../../Muzzle/AnimatedSprite2D")
+animator = NodePath("../../BodyAnimation")
 
 [connection signal="animation_finished" from="Muzzle/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="VisualComponent/Timer" to="VisualComponent" method="_on_timer_timeout"]

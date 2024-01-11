@@ -1,8 +1,8 @@
-extends CharacterBody2D
+extends Entity
 class_name Player
 
-var can_shoot : bool = false
-@export var speed : float = 400
+#var can_shoot : bool = false
+#@export var speed : float = 400
 var max_speed : float = 5
 var flames_position = 64
 @onready var flame_animation = $FlameAnimation
@@ -11,25 +11,38 @@ var flames_position = 64
 @onready var bullet_timer = $BulletTimer as Timer
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
-var spawn_position : Vector2i = Vector2(0,1500)
-var destination_position: Vector2i = Vector2(0, 350)
+#var spawn_position : Vector2i = Vector2(0,1500)
+#var destination_position: Vector2i = Vector2(0, 350)
 
-@onready var player_interactive_state = $FiniteStateMachine/PlayerInteractiveState
-@onready var player_flying_state = $FiniteStateMachine/PlayerFlyingState
-@onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
+#@onready var player_interactive_state = $FiniteStateMachine/PlayerInteractiveState
+#@onready var player_flying_state = $FiniteStateMachine/PlayerFlyingState
+#@onready var finite_state_machine : FiniteStateMachine = $FiniteStateMachine
 
+var flying_state
+var interactive_state
 
 @onready var visual_component = $VisualComponent
 @onready var hit_box_component = $HitboxComponent
 
-var explosion = preload("res://Scenes/explosion.tscn")
+#var explosion = preload("res://Scenes/explosion.tscn")
 
 func _ready():
+	super._ready()
 	self.flame_animation.play("Idle")
 	self.body_animation.play("Idle")
 	Global.player = self
-	self.player_flying_state.arrived_at_location.connect(self.finite_state_machine._change_state.bind(self.player_interactive_state))
 	pass
+
+func chain_signals():
+	print("signal chainning on child")
+	for tmp in self.states:
+		var v = self.states[tmp]
+		match(tmp):
+			"PlayerFlyingState":
+				self.flying_state = v
+			"PlayerInteractiveState":
+				self.interactive_state = v
+	self.flying_state.arrived_at_location.connect(self.finite_state_machine._change_state.bind(self.interactive_state))
 
 func _process(delta):
 	pass
@@ -43,7 +56,7 @@ func _input(event):
 	
 func _physics_process(delta):
 	if (Input.is_action_just_pressed("Fire") || Input.is_action_pressed("Fire")) && self.can_shoot:
-		self.shoot()
+		self.shoot() 
 	self.process_movement_animations()
 	self.move_and_slide()
 	self.muzzle.global_position = self.global_position
@@ -70,11 +83,6 @@ func process_movement_animations():
 	else:
 		movement_animation = "Idle"
 	self.body_animation.play(movement_animation)
-
-
-func _on_bullet_timer_timeout():
-	self.can_shoot = true
-
 
 func _on_animation_player_animation_finished(anim_name):
 	pass

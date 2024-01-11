@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/States/Finite_State_Machine.gd" id="3_qlh1m"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Attack_State.gd" id="5_5q3y6"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Idle_State.gd" id="6_cdbim"]
-[ext_resource type="Script" path="res://Scripts/States/Enemy_Flying_State.gd" id="7_yp8yh"]
 [ext_resource type="PackedScene" uid="uid://dm7somm75rcu5" path="res://Scenes/health_component.tscn" id="8_rxo4i"]
+[ext_resource type="Script" path="res://Scripts/States/Entity_Flying_State.gd" id="8_ssprq"]
 [ext_resource type="Script" path="res://Scripts/States/Enemy_Dive.gd" id="9_byhln"]
 [ext_resource type="PackedScene" uid="uid://ban2fo0lfbu2w" path="res://Scenes/hitbox_component.tscn" id="9_qp51y"]
 [ext_resource type="Script" path="res://Scripts/VisualComponent.gd" id="11_x1rf1"]
@@ -128,7 +128,7 @@ animator = NodePath("../../AnimatedSprite2D")
 vision_cast = NodePath("../../RayCast2D")
 
 [node name="EnemyFlyingState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator", "vision_cast")]
-script = ExtResource("7_yp8yh")
+script = ExtResource("8_ssprq")
 actor = NodePath("../..")
 animator = NodePath("../../AnimatedSprite2D")
 vision_cast = NodePath("../../RayCast2D")

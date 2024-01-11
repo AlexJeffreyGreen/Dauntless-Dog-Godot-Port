@@ -1,4 +1,4 @@
-class_name EnemyFlyingState
+class_name EntityFlyingState
 extends State
 
 var spawn_position : Vector2
