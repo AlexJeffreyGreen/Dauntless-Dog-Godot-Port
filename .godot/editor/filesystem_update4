@@ -3,10 +3,11 @@ res://Scripts/UI/UI.gd
 res://Shaders/flicker.gdshader
 res://Resources/enemy_01.tres
 res://Resources/Waves/wave_01.tres
-res://Scripts/Entities/Entity.gd
-res://Scripts/Player.gd
-res://Scripts/States/Enemy_Flying_State.gd
-res://Scripts/States/Player/Player_Flying_State.gd
+res://Scripts/Enemy.gd
+res://Scenes/enemy.tscn
+res://Scripts/States/Entity_Idle_State.gd
+res://Scripts/States/Entity_Dive_State.gd
+res://Scripts/States/Entity_Attack_State.gd
 res://Scenes/main.tscn
 res://Scenes/bullet.tscn
 res://Scenes/stars.tscn
@@ -15,8 +16,8 @@ res://Scenes/enemy_bullet.tscn
 res://Scenes/visual_component.tscn
 res://Scenes/UI/UI.tscn
 res://Scripts/wave_spawner.tscn
-res://Scenes/enemy.tscn
 res://Scenes/Enemies/enemy02.tscn
 res://Scenes/explosion.tscn
 res://Scenes/audio_component.tscn
-res://Scripts/Enemy.gd
+res://Scripts/Entities/Entity.gd
+res://Scripts/Player.gd

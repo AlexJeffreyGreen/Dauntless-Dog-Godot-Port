@@ -1,4 +1,4 @@
-class_name EnemyIdleState
+class_name EntityIdleState
 extends State
 
 signal saw_player

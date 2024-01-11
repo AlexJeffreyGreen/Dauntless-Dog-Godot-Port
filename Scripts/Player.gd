@@ -8,7 +8,6 @@ var flames_position = 64
 @onready var flame_animation = $FlameAnimation
 @onready var body_animation = $BodyAnimation
 @onready var bullet = preload("res://Scenes/bullet.tscn")
-@onready var bullet_timer = $BulletTimer as Timer
 @onready var muzzle_animation_player = $Muzzle/AnimationPlayer
 @onready var muzzle = $Muzzle
 #var spawn_position : Vector2i = Vector2(0,1500)
@@ -66,7 +65,7 @@ func shoot():
 	AudioManager.play(AudioManager.SOUND_EFFECT.SHOOT)
 	#self.audio_component.Play(AudioComponent.SOUND_EFFECT.SHOOT)
 	self.can_shoot = false
-	self.bullet_timer.start()#.start(.10)
+	self.attack_timer.start()#.start(.10)
 	var currentBullet = self.bullet.instantiate() as Bullet
 	self.add_child(currentBullet)
 	currentBullet.set_as_top_level(true)

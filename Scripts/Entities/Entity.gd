@@ -9,12 +9,13 @@ var destination_position: Vector2i = Vector2i.ZERO
 var explosion = preload("res://Scenes/explosion.tscn")
 var states = {}
 var can_shoot = false
+var attack_timer
 
 func _ready() -> void:
 	self.fill_states()
 	self.chain_signals()
-	var timer = self.get_node('BulletTimer') as Timer
-	timer.timeout.connect(self.bullet_timer_timeout.bind())
+	attack_timer = self.get_node('AttackTimer') as Timer
+	attack_timer.timeout.connect(self.bullet_timer_timeout.bind())
 	
 ## Fills the finite state machine with states that are children of the state machine.
 func fill_states() -> void:#{key: String, value: State}:

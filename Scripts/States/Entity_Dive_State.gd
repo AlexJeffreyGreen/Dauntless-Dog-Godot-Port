@@ -1,5 +1,5 @@
+class_name EntityDiveState
 extends State
-class_name EnemyDiveState
 
 signal dive_complete
 

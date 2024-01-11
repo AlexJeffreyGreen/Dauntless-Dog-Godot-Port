@@ -1,4 +1,4 @@
-class_name EnemyAttackState
+class_name EntityAttackState
 extends State
 
 signal lost_player
